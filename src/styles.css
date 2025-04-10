@@ -1,0 +1,124 @@
+/* You can add global styles to this file, and also import other style files */
+/* @import 'ngx-toastr/toastr'; */
+
+html, body { height: 100%; }
+body { margin: 0;  }
+
+:root{
+  --dark-blue:#001A72;
+  --light-blue:#4857D9;
+  --fayroze-light:#03556B;
+  --fayroze-dark:#03556B;
+  --light-gray:#E9E9E9;
+  --grey-color:#CEC7B7;
+  --grey:#D9D9D9;
+  --button-color:#C3AE8A;
+  --forms-color:#FEECCDD9;
+  --nav-color:#F1E8BF;
+  --yellow-color:#F5B104;
+  --orange-color:#E45C00;
+  --brown-color:#6D4E1F;
+  --green-color:#22A60C;
+  --mocha-color:#EC2DFD;
+  --sareh-color:#147CDC;
+  --ketab-color:#D89E09;
+  --adawat-color:#25D408;
+  --sleep-color:#FE0404;
+  --black:#000;
+  --white:#fff;
+
+}
+*{
+  padding:0;
+  margin:0;
+}
+html{
+  scroll-behavior: smooth;
+}
+body{
+  font-family: Almarai, "Helvetica Neue", sans-serif !important;
+}
+
+
+/* *******manooTemp************* */
+.manooTemp{
+  direction: rtl;
+  z-index: 10;
+  background-color: var(--forms-color);
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  min-height: 600px;
+}
+small.text-danger{
+  font-size: 12px;
+}
+/* ***********manooFlow************* */
+.manooFlow{
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left:0;
+  background-color: #00000065;
+  height:100%;
+  width:100%;
+}
+.manooFlow .manooFlow-content{
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  min-width:500px;
+  border-radius: 50px;
+  background-color: var(--fayroze-dark);
+  border: solid var(--yellow-color);
+  border-width: 9px 12px;
+  outline: 4px solid var(--orange-color);
+  padding:30px;
+  direction: rtl;
+}
+.manooFlow .manooFlow-content .manooFlow-exit{
+  position: absolute;
+  right:10px;
+  top:10px;
+  height:40px;
+  width:40px;
+  cursor: pointer;
+}
+.manooFlow .manooFlow-content .manooFlow-h2{
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color:var(--nav-color);
+  margin-bottom: 20px;
+}
+.manooFlow .manooFlow-content .manooFlow-info{
+  background-color:var(--nav-color);
+  padding: 20px;
+  border-radius: 25px;
+  direction: rtl;
+  min-height: 200px;
+}
+
+/* ---backGrounds--- */
+.parent{
+  position:relative;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.parent::before{
+  content: '';
+  position : absolute;
+  top: 0;
+  left: 0;
+  height:100% ;
+  width:100% ;
+  background-color: rgba(0, 0, 0, 0.377);
+}
+
+
+/* ---NavBar Buttons--- */
+
+
+

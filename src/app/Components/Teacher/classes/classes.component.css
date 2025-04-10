@@ -1,0 +1,147 @@
+.classes{
+  display: flex;
+  flex-wrap: wrap;
+}
+.class{
+  margin: 5px 10px;
+  width: 30%;
+  background-color: #fff;
+  padding:30px 10px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+.class-top{
+  padding:10px;
+  width:100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.class-top h3{
+  font-size: 22px;
+  font-weight: bold;
+}
+i{
+  cursor: pointer;
+  color: #fff;
+  background-color: var(--dark-blue);
+  font-size: 16px;
+  height:30px;
+  width:30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.class .class-middle{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding:10px;
+}
+.class .class-middle img{
+  width:50%;
+}
+.class .class-middle div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.class .class-middle div p{
+  font-size: 18px;
+  font-weight: bolder;
+  color: var(--grey);
+  text-align: center;
+  margin-bottom: 0;
+}
+.class .class-middle div span{
+  background-color: var(--grey);
+  padding: 4px 6px;
+  margin-top: 5px;
+  font-size: 18px;
+  font-weight: bolder;
+  border-radius: 12px;
+}
+.class .class-bottom{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.class .class-bottom button{
+  background-color: var(--dark-blue);
+  border: none;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.class .class-bottom div{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.class .class-bottom div i{
+  margin: 0 10px;
+}
+.class::after{
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 100%;
+  background-color: var(--dark-blue);
+  left: 0;
+  top: 0;
+}
+.class::before{
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 100%;
+  background-color: var(--dark-blue);
+  left: 0;
+  bottom: 0;
+}
+.addClassBtn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.addClassBtn img{
+  width: 50%;
+}
+.addClassBtn p{
+  font-weight: 18px;
+  color: var(--dark-blue);
+  font-weight: bold;
+  text-align: center;
+}
+
+/* *************** AddClass *********************** */
+.manooFlow .manooFlow-content .form-group label{
+  margin-bottom: 15px;
+
+}
+.manooFlow .manooFlow-content .form-group input{
+  background-color: var(--grey-color);
+  border: none;
+  border-radius: 25px;
+}
+.manooFlow .manooFlow-content button{
+  background-color:var(--nav-color);
+  padding: 5px 15px;
+  border-radius: 25px;
+  width: fit-content;
+  color:var(--brown-color);
+  border:none;
+  outline: none;
+  font-weight: bold;
+  font-size: 18px;
+}

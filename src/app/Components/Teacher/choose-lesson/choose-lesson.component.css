@@ -1,0 +1,9 @@
+.lesson{
+  direction: rtl;
+  z-index: 10;
+  background-color: var(--forms-color);
+  padding: 20px;
+  border-radius: 30px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}

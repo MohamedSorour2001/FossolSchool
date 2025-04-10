@@ -1,0 +1,56 @@
+.nav{
+  padding:20px 0;
+}
+.profile-image img{
+  width: 60px;
+  height: 60px;
+  max-width: 100%;
+  max-height: 100%;
+}
+.nav_icon img{
+  height:30px;
+  width:30px;
+}
+.nav_icon{
+  background-color: var(--dark-blue);
+  border-radius: 8px;
+  padding:5px 10px;
+  margin:0 10px;
+  position: relative;
+}
+.nav-items{
+  background-color: var(--nav-color);
+  direction: rtl;
+  border-radius: 8px;
+  padding:10px 20px;
+  display: flex;
+  align-items: center;
+  max-width: 500px ;
+  overflow-x: scroll;
+  position: absolute;
+  bottom: -125px;
+  right:0;
+}
+.nav-items .nav-item{
+  padding:2px;
+  margin: 0 5px;
+  text-align: center;
+}
+.nav-items .nav-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.nav-items .nav-item i{
+  height:30px;
+  width:30px;
+}
+.nav-items .nav-item span{
+  width: fit-content;
+}
+.nav-items .nav-item img{
+  width: 30px;
+  height: 30px;
+}
+

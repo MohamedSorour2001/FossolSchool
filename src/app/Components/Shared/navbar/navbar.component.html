@@ -1,0 +1,96 @@
+<div class="nav container d-flex align-items-center justify-content-between w-100">
+  <div class="left d-flex align-items-center">
+    <div class="profile-image" (click)="toggleMenu()">
+      <img src="../../../assets/images/human.png" alt="Profile" />
+    </div>
+    <div class="nav_icon" [ngClass]="{ hovered: isHovered.bell }" (mouseover)="changeIcon('bell', true)"
+      (mouseout)="changeIcon('bell', false)">
+      <img [src]="currentIcons.bell" />
+    </div>
+  </div>
+  <div class="right d-flex align-items-center">
+    <div class="nav_icon" (click)="openSetting()" [ngClass]="{ hovered: isHovered.settings }"
+      (mouseover)="changeIcon('settings', true)" (mouseout)="changeIcon('settings', false)">
+      <img [src]="currentIcons.settings" />
+
+    </div>
+    <div class="nav_icon" (click)="openNav()" [ngClass]="{ hovered: isHovered.home }"
+      (mouseover)="changeIcon('home', true)" (mouseout)="changeIcon('home', false)">
+      <img [src]="currentIcons.home" />
+      <div class="nav-items">
+        <div class="nav-item " routerLink="/home">
+          <i class="">
+            <img src="../../../assets/images/home-black.png" />
+          </i>
+          <span>الرئيسية</span>
+        </div>
+        <div class="nav-item first-item">
+          <i class="">
+            <img src="../../../assets/images/calendar-link.png" />
+          </i>
+          <span>الجدول</span>
+        </div>
+        <div class="nav-item" routerLink="/student">
+          <i class="">
+            <img src="../../../assets/images/users-more.png" />
+          </i>
+          <span>الطلاب</span>
+        </div>
+        <div class="nav-item" routerLink="/studentPro">
+          <i class="">
+            <img src="../../../assets/images/users-more.png" />
+          </i>
+          <span>ملف الطالب</span>
+        </div>
+        <div class="nav-item" routerLink="/package">
+          <i class="">
+            <img src="../../../assets/images/chart-vertical.png" />
+          </i>
+          <span>الكشوف</span>
+        </div>
+        <div class="nav-item" routerLink="/paper">
+          <i class="">
+            <img src="../../assets/images/document-filled.png" />
+          </i>
+          <span>اوراق العمل</span>
+        </div>
+        <div class="nav-item" routerLink="/exam">
+          <i class="">
+            <img src="../../assets/images/document-filled.png" />
+          </i>
+          <span>الاختبارات</span>
+        </div>
+        <div class="nav-item" routerLink="/certificate">
+          <i class="">
+            <img src="../../../assets/images/crown-1.png" />
+          </i>
+          <span>الشهادات</span>
+        </div>
+        <div class="nav-item" routerLink="/reason">
+          <i class="">
+            <img src="../../../assets/images/user-warning.png" />
+          </i>
+          <span>تحويل طالب</span>
+        </div>
+        <div class="nav-item" routerLink="/skills">
+          <i class="">
+            <img src="../../../assets/images/calendar-user.png" />
+          </i>
+          <span>المهارات الاساسية</span>
+        </div>
+        <div class="nav-item">
+          <i class="">
+            <img src="../../../assets/images/suitcase.png" />
+          </i>
+          <span> البنك</span>
+        </div>
+        <div class="nav-item" routerLink="/curriculum">
+          <i class="">
+            <img src="../../../assets/images/document-plus.png" />
+          </i>
+          <span> توزيع المنهج</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,164 @@
+.content .region-selection select{
+  width: 100%;
+  padding:10px;
+  background-color: #fff;
+  border-radius: 12px;
+  border: none;
+}
+.content .region-selection select:hover {
+  border-color: transparent;
+}
+.content .region-selection select:focus {
+  outline: none;
+  border-color: transparent;
+}
+.content .region-selection option{
+  width: 100%;
+  background-color: var(--light-gray);
+  border: none;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  direction: rtl;
+  padding:10px;
+  margin:2px 0;
+}
+.content .region-selection option img{
+  width:10%;
+}
+.content .region-selection option p{
+  width:50%;
+}
+.content .region-selection option p.member_number{
+  width:40%;
+}
+.content .stages{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.content .stages>div{
+  background-color: #fff;
+  border-radius: 4px;
+  padding:10px;
+  margin:0 10px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: 3px 4px 4px #00000039;
+}
+.content .stages .package{
+  padding:10px;
+  margin:0 20px;
+  width:30%;
+}
+.content .stages .package p{
+  font-size: 22px;
+  font-weight: bold;
+}
+.content .stages .package .price{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.content .stages .package .price p{
+  color:var(--light-blue);
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0;
+}
+.content .stages .package .price label{
+  font-size: 14px;
+  border: 1px solid #000;
+  border-radius: 3px;
+  padding:2px;
+  cursor: pointer;
+}
+.content .stages div.big{
+  padding:10px;
+  margin:0 20px;
+  width:25%;
+}
+.content .stages.package div{
+  padding:10px;
+  margin:0 20px;
+  width:25%;
+}
+.content .stages div input{
+  margin-bottom: 5px;
+}
+.content .stages div.big input{
+  margin-bottom: 8px;
+}
+.content .stages.package div input{
+  margin-bottom: 8px;
+}
+.content .stages div label{
+  font-size: 16px;
+}
+.content .stages div.big label{
+  font-size: 18px;
+}
+
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.content {
+  padding: 10px;
+}
+.region-selection, .stage-selection, .grade-selection, .subject-selection, .subscription-duration {
+  margin: 10px 0;
+}
+label {
+  font-weight: bold;
+  margin-right: 5px;
+}
+input[type="checkbox"] {
+  margin-right: 5px;
+}
+.container {
+  font-family: Arial, sans-serif;
+  direction: rtl;
+}
+
+button{
+  background-color: #fff;
+  border-radius: 12px;
+  border:1px solid #fff;
+  color:var(--light-blue);
+  font-size: 22px;
+  font-weight: bold;
+  padding:6px 16px;
+  margin: 10px 20px;
+}
+
+option {
+  display: none; /* Initially hidden */
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+option {
+  padding: 10px;
+  color: #333;
+  cursor: pointer;
+}
+
+option:hover {
+  background-color: #007BFF; /* Highlight on hover */
+  color: #fff; /* Text color on hover */
+}
+

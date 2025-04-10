@@ -1,0 +1,222 @@
+<div class="background-container">
+  <app-navbar></app-navbar>
+
+
+  <div class="custom-form">
+    <div class="my-form">
+      <div class="form-group">
+        <div class="container">
+          <div class="row">
+            <div class="stepper">
+              <div class="step active">
+                <span>1</span>
+              </div>
+              <div class="line2"></div>
+              <div class="step">
+                <span class="remain">2</span>
+              </div>
+              <div class="line2"></div>
+              <div class="step">
+                <span class="remain">3</span>
+              </div>
+            </div>
+          </div>
+          <h4 class="text-end">المنطقه</h4>
+          <!-- <div class="select-container" dir="rtl">
+            <select
+              id="custom-select"
+              class="form-select form-select-lg mb-3"
+              dir="rtl"
+            >
+              <option selected disabled>قم باختيار المنطقه</option>
+              <option value="1" class="option">منطقة الرياض</option>
+              <option value="2" class="option">منطقة مكة المكرمة</option>
+              <option value="3" class="option">منطقة الشرقية</option>
+              <option value="4" class="option">منطقة المدينة</option>
+            </select>
+          </div> -->
+          <div class="dropdown-container" dir="rtl">
+            <!-- Dropdown Header -->
+            <div class="dropdown-header" (click)="toggleDropdown()">
+              <span>{{ selectedRegion || "قم باختيار المنطقة" }}</span>
+              <span class="arrow">&#9660;</span>
+            </div>
+
+            <!-- Dropdown Options -->
+
+              <ul *ngIf="isDropdownOpen" class="dropdown-options">
+                <li
+                  *ngFor="let region of elements; let i = index"
+                  (click)="selectRegion(region)"
+                >
+                  <div class="region-info">
+                    <ng-container *ngIf="region.teacherCount > 0 && region.medalType !== 'none'; else placeholder">
+                      <!-- <img [src]="medals[region.medalType]" alt="Medal" class="medal-icon" /> -->
+                      <!-- <img *ngIf="region.medalType" [src]="medals[region.medalType]" alt="Medal" class="medal-icon"  /> -->
+                    </ng-container>
+                    <ng-template #placeholder>
+                      <!-- Placeholder for spacing -->
+                      <span class="medal-placeholder"></span>
+                    </ng-template>
+                    <span class="region-name">{{ region.regionName }}</span>
+                  </div>
+                  <span class="subscribers">
+                    <span style="color: black; font-size: large">عدد المشتركين:</span>
+                    {{ region.teacherCount }}
+                  </span>
+                </li>
+              </ul>
+            </div>
+
+
+          <h4 class="text-end">المرحلة</h4>
+          <div class="row stage">
+            <!-- Dynamically render levels -->
+            <div
+              class="col-md-3 custom-box mx-2"
+              *ngFor="let level of levels"
+            >
+              <div class="container">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  [checked]="displayedGrades[level.id]"
+                  [id]="level.id"
+                  (click)="$event.stopPropagation()"
+                />
+              </div>
+              <label class="form-check-label" [for]="level.id">
+                {{ level.levelName }}
+              </label>
+            </div>
+          </div>
+
+          <h4 class="text-end mt-3" *ngIf="isHeaderShow">الصف</h4>
+          <div *ngFor="let level of levels">
+            <div class="row classes mt-3" *ngIf="displayedGrades[level.id]">
+              <div
+                class="col-md-3 custom-box mx-2"
+                *ngFor="let grade of grades[level.id]"
+                (click)="toggleGrade(grade.id)"
+              >
+                <div class="container">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [id]="grade.id"
+                  />
+                </div>
+                <label class="form-check-label" [for]="grade.id">
+                  {{ grade.gradeName }}
+                </label>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- end sec -->
+
+          <h4 class="text-end mt-3" *ngIf="isHeaderMAterialShow">المواد</h4>
+          <div *ngFor="let subject of subjects">
+            <div class="row classes mt-3" >
+              <div
+                class="col-md-3 custom-box mx-2"
+              >
+                <div class="container">
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    [id]="subject.subjectId" (click)="$event.stopPropagation()"
+                  />
+                </div>
+                <label class="form-check-label" [for]="subject.subjectId">
+                  {{ subject.subjectName }}
+                                </label>
+              </div>
+            </div>
+               </div>
+
+
+
+
+          <h4 class="text-end mt-3">مده الاشتراك</h4>
+
+          <div class="row duration">
+            <div class="col-md-3 custom-box mx-2">
+              <div class="container">
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault3"
+                  />
+                </div>
+              </div>
+              <label class="form-check-label" for="flexCheckDefault1">
+                الفصل الدراسي الثالث
+              </label>
+            </div>
+
+            <div class="col-md-3 custom-box mx-2">
+              <div class="container">
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault3"
+                  />
+                </div>
+              </div>
+              <label class="form-check-label" for="flexCheckDefault2">
+                الفصل الدراسي الثاني
+              </label>
+            </div>
+
+            <div class="col-md-3 custom-box mx-2">
+              <div class="container">
+                <div>
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    value=""
+                    id="flexCheckDefault3"
+                  />
+                </div>
+              </div>
+              <label class="form-check-label" for="flexCheckDefault3">
+                الفصل الدراسي الاول
+              </label>
+            </div>
+          </div>
+
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+            <button class="btn btn-light mt-3" routerLink="/payment">
+              حدد طريقة الدفع
+            </button>
+          </div>
+
+          <!-- <div class="col-lg-1 col-md-1 col-sm-1">
+          </div>
+          <div class="payment-total-information col-lg-8 col-md-8 col-sm-8">
+            <div class="container">
+              <div class="row">
+                <h5 class="col-lg-4 col-md-4 col-sm-4">الإجمالي</h5>
+                <h5 class="col-lg-4 col-md-4 col-sm-4">الخصم</h5>
+                <h5 class="col-lg-4 col-md-4 col-sm-4">المجموع الكلي</h5>
+              </div>
+            </div>
+            <div class="container">
+              <div class="row">
+                <h5 class="total-price col-lg-4 col-md-4 col-sm-4">100<span>ر.س</span></h5>
+                <h5 class="discount col-lg-4 col-md-4 col-sm-4">5<span>%</span></h5>
+                <h5 class="final-price col-lg-4 col-md-4 col-sm-4">95<span>ر.س</span></h5>
+              </div>
+            </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

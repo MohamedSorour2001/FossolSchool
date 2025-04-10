@@ -1,0 +1,49 @@
+<div class="container manooTemp">
+  <h3 class="mb-4 text-end"> انشاء حساب للمعلم</h3>
+
+  <form action="" [formGroup]="registerForm" (ngSubmit)="Submit()" >
+    <div class="form-group mb-3 text-md-right">
+      <label class="label mb-2" for="name"> رمز الدخول</label>
+      <input type="text" class="form-control text-md-right" name="name" id="name" formControlName="name" placeholder="قم باضافه رمز الدخول" required />
+      <div class="errormsg" [hidden]="name?.valid ||name?.untouched">
+        <small class="text-danger text-end" *ngIf="name?.errors?.['required']">
+          رمز الدخول مطلوب
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group mb-3 text-md-right">
+      <label class="label mb-2" for="phone">رقم الهاتف</label>
+      <input type="text" class="form-control text-md-right" name="phone" id="phone" formControlName="phone" placeholder="+966 0000" required />
+      <div class="errormsg" [hidden]="phone?.valid ||phone?.untouched">
+        <small class="text-danger text-end" *ngIf="phone?.errors?.['required']">
+          رقم الهاتف مطلوب
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group mb-3 text-md-right row">
+      <div class="col-md-6">
+        <label class="label mb-2" for="password">كلمه السر</label>
+        <input type="password" class="form-control text-md-right" id="password" formControlName="password" placeholder="********" required />
+        <div class="errormsg" [hidden]="password?.valid ||password?.untouched">
+          <small class="text-danger text-end" *ngIf="password?.errors?.['required']">
+            الباسوورد مطلوب
+          </small>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="label mb-2" for="confirmPassword">تأكيد كلمه السر </label>
+        <input type="password" class="form-control text-md-right" id="confirmPassword" formControlName="confirmPassword" placeholder="********" required />
+        <div class="errormsg" [hidden]="confirmPassword?.valid ||confirmPassword?.untouched">
+          <small class="text-danger text-end" *ngIf="confirmPassword?.errors?.['required']">
+            تأكيد الباسوورد مطلوب
+          </small>
+        </div>
+      </div>
+    </div>
+
+    <button type="submit" class="form-control btn btn-primary submit px-3"> انشاء حساب</button>
+
+  </form>
+</div>

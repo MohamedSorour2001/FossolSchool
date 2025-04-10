@@ -1,0 +1,50 @@
+<div class="manooFlow" *ngIf="addClass">
+  <div class="manooFlow-content">
+    <img src="../../../../assets/images/close.png" alt="close" class="manooFlow-exit" (click)="Toggle()">
+    <h2 class="manooFlow-h2">إضافه فصل</h2>
+    <div>
+      <form action="" [formGroup]="addClassForm" (ngSubmit)="Submit()">
+        <div class="manooFlow-info form-group mb-3 text-md-right">
+          <label class="label mb-2" for="name"> إسم الفصل</label>
+          <input type="text" class="form-control text-md-right" name="name" id="name" formControlName="name" required />
+          <div class="errormsg" [hidden]="name?.valid ||name?.untouched">
+            <small class="text-danger text-end" *ngIf="name?.errors?.['required']">
+              إسم الفصل مطلوب
+            </small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">حفظ</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="container manooTemp">
+  <div class="content">
+    <div class="classes">
+      <div class="class">
+        <div class="class-top">
+          <h3>الفصل 1</h3>
+          <i class="fa-solid fa-screwdriver-wrench"></i>
+        </div>
+        <div class="class-middle">
+          <img src="../../../../assets/images/class.png" alt="classImage">
+          <div>
+            <p>عدد الطلاب</p>
+            <span>22</span>
+          </div>
+        </div>
+        <div class="class-bottom">
+          <button>الطلاب</button>
+          <div>
+            <i class="fa-regular fa-trash-can"></i>
+            <i class="fa-solid fa-screwdriver-wrench"></i>
+          </div>
+        </div>
+      </div>
+      <div class="class addClassBtn" (click)="Toggle()">
+        <img src="../../../../assets/images/plus-circle2.png" alt="add">
+        <p>إضافه فصل</p>
+      </div>
+    </div>
+  </div>
+</div>
