@@ -20,32 +20,33 @@ export class UserDataService {
       let encodeToken:any = localStorage.getItem('token');
       let decodeToken = jwtDecode(encodeToken);
       this.userData=decodeToken;
-      this.role=this.userData.role;
+      const roleClaim = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
+      this.role=this.userData[roleClaim];
       this.name=this.userData.email;
       localStorage.setItem("role",this.role)
     }
   }
 
-  // register(data:object):Observable<any>{
-  //   return this.HttpClient.post('http://localhost:5284/api/Auth/register',data);
-  // }
+  register(data:object):Observable<any>{
+    return this.HttpClient.post('https://localhost:5001/api/Auth/register',data);
+  }
 
-  // AddUser(data:object):Observable<any>{
-  //   const headers = new HttpHeaders({
-  //         'Authorization': `Bearer ${localStorage.getItem('token')}`
-  //       });
-  //   return this.HttpClient.post('http://localhost:5284/api/Auth/registerForAdmin',data,{headers});
-  // }
+  AddTeacher(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        });
+    return this.HttpClient.post('https://localhost:5001/api/User/create-teacher-basic',data,{headers});
+  }
 
-  // login(data:object):Observable<any>{
-  //   return this.HttpClient.post('http://localhost:5284/api/Auth/login',data);
-  // }
+  login(data:object):Observable<any>{
+    return this.HttpClient.post('https://localhost:5001/api/Auth/login',data);
+  }
 
   logOut(){
     this.role='';
     localStorage.removeItem("token")
     localStorage.removeItem("role")
-    this.Router.navigate(['/login'])
+    this.Router.navigate(['login'])
   }
 
   isTeacher(): boolean {

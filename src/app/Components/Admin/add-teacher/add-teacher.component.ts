@@ -15,44 +15,44 @@ export class AddTeacherComponent {
     registerForm:FormGroup
     constructor(private db:FormBuilder ,private Router:Router ,private _UserDataService:UserDataService){
       this.registerForm=db.group({
-        name:['',[Validators.required]],
-        phone:['',[Validators.required]],
+        userName:['',[Validators.required]],
+        userEmail:['',[Validators.required]],
+        phoneNumber:['',[Validators.required]],
         password:['',[Validators.required]],
-        confirmPassword:['',[Validators.required]]
       })
     }
 
-    get name(){
-      return this.registerForm.get("name")
+    get userName(){
+      return this.registerForm.get("userName")
     }
-    get phone(){
-      return this.registerForm.get("phone")
+    get userEmail(){
+      return this.registerForm.get("userEmail")
+    }
+    get phoneNumber(){
+      return this.registerForm.get("phoneNumber")
     }
     get password(){
       return this.registerForm.get("password")
     }
-    get confirmPassword(){
-      return this.registerForm.get("confirmPassword")
-    }
 
 
     Submit(){
-      // this.isLoading=true;
-      // console.log(this.registerForm.value)
-      // if(this.registerForm.valid){
-      //   this._UserDataService.register(this.registerForm.value).subscribe({
-      //     next:(response)=>{
-      //       this.isLoading=false;
-      //       console.log(response)
-      //       if(response.error==null){
-      //         this.Router.navigate(['/login'])
-      //       }
-      //     },
-      //     error:(err:HttpErrorResponse)=>{
-      //       this.isLoading=false;
-      //       console.log(err.error.message)
-      //     }
-      //   })
-      // }
+      console.log(this.registerForm.value)
+      if(this.registerForm.valid){
+        this._UserDataService.AddTeacher(this.registerForm.value).subscribe({
+          next:(response)=>{
+            console.log(response)
+            const id=response.data;
+            if(response.error==null){
+              console.log('Teacher Added Successfuly')
+              // this.Router.navigate(['addPackageForTeacher',id ])
+              this.Router.navigate(['addPackageForTeacher'])
+            }
+          },
+          error:(err:HttpErrorResponse)=>{
+            console.log(err.error.message)
+          }
+        })
+      }
     }
 }

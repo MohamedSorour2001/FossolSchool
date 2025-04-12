@@ -1,7 +1,192 @@
+.top{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+.top .search{
+  width:50%;
+}
+.top .search input{
+  border: none;
+  border-radius: 25px;
+  padding:5px 20px;
+  width:100%;
+}
+.top .search input:focus{
+  outline: none;
+}
+.top .search input::placeholder{
+  font-size: 12px;
+  color:#cdcdcd;
+  position: absolute;
+  left:15%;
+  top:50%;
+  transform: translateY(-50%);
+}
+.top .addStudentBtn{
+  display: flex;
+  align-items: center;
+  background-color: var(--fayroze-dark);
+  border-radius: 25px;
+  padding:5px 15px;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  position: relative;
+  cursor: pointer;
+}
+.top .addStudentBtn i{
+  margin-right: 10px;
+}
+.top .addStudentBtn p{
+  margin-bottom: 0;
+}
+.top .addStudentBtn:hover .drop{
+  display: block;
+}
+.top .addStudentBtn .drop{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  color: #000;
+  border-radius: 8px;
+  padding:10px 0;
+  font-size: 16px;
+  font-weight: bold;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  overflow: hidden;
+  display: none;
+}
+.top .addStudentBtn .drop p{
+  padding:5px 10px;
+  cursor: pointer;
+}
+.top .addStudentBtn .drop p:hover{
+  background-color: #d9d9d9;
+  color:var(--light-blue)
+}
 
-tbody tr{
-  background-color: var(--brown-color);
-  padding:20px !important;
-  margin-bottom: 15px !important;
-  border-radius: 15px !important;
+
+/* ********************* Start Middle************* */
+.middle{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 20px 0;
+}
+.middle div{
+  background-color: var(--fayroze-dark);
+  padding:10px;
+  border-radius: 15px;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.middle h3{
+  color: var(--nav-color);
+  font-size: 20px;
+  font-weight: bold;
+}
+.middle p{
+  color: var(--dark-blue);
+  font-size: 16px;
+  font-weight: bold;
+  background-color: var(--nav-color);
+  padding:5px 25px;
+  border-radius: 25px;
+  margin-bottom: 0;
+}
+/* ********************* Start bottom************* */
+.bottom{
+  margin:  30px 0;
+}
+table{
+  width: 100%;
+}
+.thead{
+  background-color: var(--fayroze-light);
+  color:#fff;
+  border-radius: 15px;
+  padding:10px 25px;
+  width: 100%;
+}
+thead{
+  width: 100%;
+}
+.tbody{
+  background-color: var(--nav-color);
+  border-radius: 15px;
+  padding:10px 25px;
+  width: 100%;
+}
+.tbody td{
+  align-self: center;
+  font-size: 22px;
+  font-weight: bold;
+  color:var(--nav-color);
+  -webkit-text-stroke: 0.01px black;
+}
+.tbody td.studentImage{
+  position: relative;
+}
+.tbody td.studentImage:hover .studentSetting{
+  display: block;
+}
+.tbody td.studentImage img{
+  width: 50px;
+  height: 50px;
+  border: 3px solid var(--fayroze-light);
+  border-radius: 6px;
+}
+.tbody td.studentImage .studentSetting{
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color: #fff;
+  border: 10px solid var(--fayroze-light);
+  color: #000;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: bold;
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  z-index: 5;
+  display: none;
+}
+.tbody td.studentImage .studentSetting::after{
+  content: '';
+  position: absolute;
+  top:-29px;
+  right:10px;
+  border:10px solid;
+  border-color: transparent transparent var(--fayroze-light) transparent;
+}
+.tbody td.studentImage .studentSetting p{
+  padding:5px 10px;
+  cursor: pointer;
+  margin-bottom: 0;
+  width: max-content;
+  text-align: right;
+}
+.tbody td.studentImage .studentSetting i{
+  margin-left: 5px;
+}
+.tbody td.name{
+  color:#000 !important;
+}
+.tbody td span{
+  background-color:var(--button-color);
+  padding:2px 8px;
+  color: #000;
+  border-radius: 8px;
 }

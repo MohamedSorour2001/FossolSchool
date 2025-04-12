@@ -31,9 +31,9 @@
             <form action="" class="signin-form" [formGroup]="loginForm"  (ngSubmit)="Submit()" >
               <!-- <div class="alert alert-danger m-2" *ngIf="errorMessage">{{ errorMessage }}</div> -->
               <div class="form-group mb-3 text-md-right">
-                <label class="label" for="name">رقم الهاتف</label>
-                <input type="phone" class="form-control text-md-right" placeholder="+966 0000" name="email"
-                  class="form-control" id="phone" formControlName="phone" required />
+                <label class="label" for="email">البريد الإلكترونى</label>
+                <input type="email" class="form-control text-md-right" placeholder="+966 0000" name="email"
+                  class="form-control" id="email" formControlName="email" required />
               </div>
 
               <div class="form-group mb-3 text-md-right">
@@ -49,9 +49,8 @@
                 <input type="checkbox" id="flexCheckChecked">
               </div>
 
-
               <div class="form-group">
-                <button type="submit" class="form-control btn btn-primary submit px-3">تسجيل دخول</button>
+                <button class="form-control btn btn-primary submit px-3" [disabled]="loginForm.invalid">تسجيل دخول</button>
               </div>
 
               <div class="d-flex justify-content-center align-items-center" style="height: 100%;">

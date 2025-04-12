@@ -106,6 +106,7 @@ small.text-danger{
   position:relative;
   background-repeat: no-repeat;
   background-size: cover;
+  background-attachment: fixed;
 }
 .parent::before{
   content: '';
@@ -118,7 +119,139 @@ small.text-danger{
 }
 
 
-/* ---NavBar Buttons--- */
+/* *****************Admin Pages Template *********************** */
+.AdminTemp .adminTitle{
+  direction: rtl;
+  z-index: 10;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.AdminTemp .adminTitle h3{
+  font-weight: bold;
+  color: var(--dark-blue);
+}
+.AdminTemp .adminTitle button{
+  padding: 5px 15px;
+  background-color: var(--dark-blue);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: 1s;
+}
+.AdminTemp .adminTitle button:hover{
+  background-color: var(--light-blue);
+}
+.AdminTemp .adminTable{
+  min-height: 400px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.AdminTemp .adminTable table{
+  border-radius: 15px;
+  direction: rtl;
+}
+.AdminTemp .adminTable table thead th{
+  background-color: var(--dark-blue) !important;
+  color: #fff;
+  font-weight: bold;
+}
+.AdminTemp .adminTable table .actions{
+  position: relative;
+}
+.AdminTemp .adminTable table .actions i{
+  cursor: pointer;
+}
+.AdminTemp .adminTable table tbody .actions .action{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background-color: #fff;
+    border-radius: 4px;
+    border: 1px solid #000;
+    font-size: 12px;
+    position: absolute;
+    top: 100%;
+    left:5px;
+    z-index: 50;
+    padding: 5px;
+    display: none;
+    width: max-content;
+}
+.AdminTemp .adminTable .table .actions .action p{
+  margin: 0;
+  cursor: pointer;
+  margin-bottom: 0;
+  width: max-content;
+  text-align: right;
+  width: 100%;
+}
+.AdminTemp .adminTable table tbody .actions .action p:hover{
+  font-weight: bold;
+}
+.AdminTemp .adminTable table tbody .actions .action i{
+  margin-right: 3px;
+}
+.AdminTemp .adminTable table tbody .actions:hover .action{
+  display: flex;
+}
+.AdminTemp ul{
+  justify-content: end;
+}
 
 
 
+/* *****************Admin Pages Add Template *********************** */
+.AdminFlow{
+  z-index: 10;
+  position: fixed;
+  top: 0;
+  left:0;
+  background-color: #00000065;
+  height:100%;
+  width:100%;
+}
+.AdminFlow .AdminFlow-content{
+  position: absolute;
+  top: 50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  min-width:500px;
+  border-radius: 25px;
+  background-color:#fff;
+  border: none;
+  padding:30px;
+  direction: rtl;
+}
+.AdminFlow .AdminFlow-content .AdminFlow-exit{
+  position: absolute;
+  right:10px;
+  top:10px;
+  height:40px;
+  width:40px;
+  cursor: pointer;
+}
+.AdminFlow .AdminFlow-content .AdminFlow-h2{
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  color:var(--dark-blue);
+  margin-bottom: 20px;
+}
+.AdminFlow .AdminFlow-content .AdminFlow-info{
+  background-color: var(--light-gray);
+  padding: 20px;
+  border-radius: 25px;
+  direction: rtl;
+  min-height: 200px;
+  margin-bottom: 30px;
+}

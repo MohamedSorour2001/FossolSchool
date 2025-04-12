@@ -1,49 +1,53 @@
 <div class="container manooTemp">
-  <h3 class="mb-4 text-end"> انشاء حساب للمعلم</h3>
+  <h3 class="mb-4 text-center fw-bold"> انشاء حساب للمعلم</h3>
 
-  <form action="" [formGroup]="registerForm" (ngSubmit)="Submit()" >
-    <div class="form-group mb-3 text-md-right">
-      <label class="label mb-2" for="name"> رمز الدخول</label>
-      <input type="text" class="form-control text-md-right" name="name" id="name" formControlName="name" placeholder="قم باضافه رمز الدخول" required />
-      <div class="errormsg" [hidden]="name?.valid ||name?.untouched">
-        <small class="text-danger text-end" *ngIf="name?.errors?.['required']">
-          رمز الدخول مطلوب
+  <form action="" class="w-100" [formGroup]="registerForm" (ngSubmit)="Submit()">
+    <div class="form-group mb-3">
+      <label class="label mb-2" for="userName">إسم المعلم</label>
+      <input type="text" class="form-control" name="userName" id="userName" formControlName="userName"
+        placeholder="قم باضه إسم المعلم" required />
+      <div class="errormsg" [hidden]="userName?.valid ||userName?.untouched">
+        <small class="text-danger" *ngIf="userName?.errors?.['required']">
+          إسم المعلم مطلوب
         </small>
       </div>
     </div>
 
-    <div class="form-group mb-3 text-md-right">
-      <label class="label mb-2" for="phone">رقم الهاتف</label>
-      <input type="text" class="form-control text-md-right" name="phone" id="phone" formControlName="phone" placeholder="+966 0000" required />
-      <div class="errormsg" [hidden]="phone?.valid ||phone?.untouched">
-        <small class="text-danger text-end" *ngIf="phone?.errors?.['required']">
+    <div class="form-group mb-3">
+      <label class="label mb-2" for="userEmail">البريد الإلكترونى</label>
+      <input type="text" class="form-control" name="userEmail" id="userEmail" formControlName="userEmail"
+        placeholder="قم بإضافه البريد الإلكترونى" required />
+      <div class="errormsg" [hidden]="userEmail?.valid ||userEmail?.untouched">
+        <small class="text-danger" *ngIf="userEmail?.errors?.['required']">
+          البريد الإلكترونى مطلوب
+        </small>
+      </div>
+    </div>
+
+    <div class="form-group mb-3">
+      <label class="label mb-2" for="phoneNumber">رقم الهاتف</label>
+      <input type="text" class="form-control" name="phoneNumber" id="phoneNumber" formControlName="phoneNumber"
+        placeholder="قم بإضافه رقم الهاتف" required />
+      <div class="errormsg" [hidden]="phoneNumber?.valid ||phoneNumber?.untouched">
+        <small class="text-danger" *ngIf="phoneNumber?.errors?.['required']">
           رقم الهاتف مطلوب
         </small>
       </div>
     </div>
 
-    <div class="form-group mb-3 text-md-right row">
-      <div class="col-md-6">
-        <label class="label mb-2" for="password">كلمه السر</label>
-        <input type="password" class="form-control text-md-right" id="password" formControlName="password" placeholder="********" required />
+    <div class="form-group mb-3">
+      <label class="label mb-2" for="password">كلمه السر</label>
+      <input type="password" class="form-control" id="password" formControlName="password"
+        placeholder="********" required />
         <div class="errormsg" [hidden]="password?.valid ||password?.untouched">
-          <small class="text-danger text-end" *ngIf="password?.errors?.['required']">
+          <small class="text-danger" *ngIf="password?.errors?.['required']">
             الباسوورد مطلوب
           </small>
         </div>
       </div>
-      <div class="col-md-6">
-        <label class="label mb-2" for="confirmPassword">تأكيد كلمه السر </label>
-        <input type="password" class="form-control text-md-right" id="confirmPassword" formControlName="confirmPassword" placeholder="********" required />
-        <div class="errormsg" [hidden]="confirmPassword?.valid ||confirmPassword?.untouched">
-          <small class="text-danger text-end" *ngIf="confirmPassword?.errors?.['required']">
-            تأكيد الباسوورد مطلوب
-          </small>
-        </div>
-      </div>
-    </div>
 
-    <button type="submit" class="form-control btn btn-primary submit px-3"> انشاء حساب</button>
+
+    <button class="form-control btn btn-primary px-3" [disabled]="registerForm.invalid"> انشاء حساب</button>
 
   </form>
 </div>

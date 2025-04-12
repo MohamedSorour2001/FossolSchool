@@ -1,68 +1,54 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { UserDataService } from 'src/app/Services/user-data.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  isMenuOpen = false;
-  isNavbarOpen = false;
-  isIconShow = false;
-  isSettingBarOpen = false;
+export class NavbarComponent implements OnInit {
   menuOpen = false;
+  isSettingBarOpen = false;
+  role: any = "";
 
-  currentIcons = {
-    bell: '../../../assets/images/bell.svg',
-    settings: '../../../assets/images/settings.svg',
-    home: '../../../assets/images/home.svg',
-  };
+  constructor(private _UserDataService: UserDataService) {
+    this.role = localStorage.getItem("role");
+  }
 
-  // Track hover state
-  isHovered = {
-    bell: false,
-    settings: false,
-    home: false,
-  };
 
-  changeIcon(iconType: string, hover: boolean) {
-    switch (iconType) {
-      case 'bell':
-        this.currentIcons.bell = hover
-          ? '../../../assets/images/bellblue.png'
-          : '../../../assets/images/bell.svg';
-        this.isHovered.bell = hover;
-        break;
-      case 'settings':
-        this.currentIcons.settings = hover
-          ? '../../../assets/images/settingsBlue.png'
-          : '../../../assets/images/settings.svg';
-        this.isHovered.settings = hover;
-        break;
-      case 'home':
-        this.currentIcons.home = hover
-          ? '../../../assets/images/home-1.png'
-          : '../../../assets/images/home.svg';
-        this.isHovered.home = hover;
-        break;
+  toggleSetting(event: Event) {
+    this.isSettingBarOpen = !this.isSettingBarOpen;
+    const target = event.currentTarget as HTMLElement;
+    const icon = target.querySelector('i');
+    console.log(icon);
+    if (icon) {
+      icon.classList.toggle('active');
+    }
+    const menuButton = document.querySelector('.nav_home>i');
+    if (menuButton) {
+      menuButton.classList.remove('active');
+      this.menuOpen = false;
     }
   }
 
-  openNav() {
-    this.isNavbarOpen = !this.isNavbarOpen;
-    this.showIcon();
-  }
-
-  showIcon() {
-    this.isIconShow = true;
-  }
-
-  openSetting() {
-    this.isSettingBarOpen = !this.isSettingBarOpen;
-  }
-
-  toggleMenu() {
+  toggleMenu(event: Event) {
     this.menuOpen = !this.menuOpen;
-    console.log('Menu Open State:', this.menuOpen); // Debugging
+    const target = event.currentTarget as HTMLElement;
+    const icon = target.querySelector('i');
+    console.log(icon);
+    if (icon) {
+      icon.classList.toggle('active');
+    }
+    const settingButton = document.querySelector('.nav_setting>i');
+    if (settingButton) {
+      settingButton.classList.remove('active');
+      this.isSettingBarOpen = false;
+    }
+  }
+  logOut() {
+    this._UserDataService.logOut()
+  }
+  ngOnInit(): void {
+    this.role = localStorage.getItem("role");
   }
 }

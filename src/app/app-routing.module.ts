@@ -11,19 +11,22 @@ import { AddTeacherComponent } from './Components/Admin/add-teacher/add-teacher.
 import { PackageForTeacherComponent } from './Components/Admin/package-for-teacher/package-for-teacher.component';
 import { ClassesComponent } from './Components/Teacher/classes/classes.component';
 import { ClassStudentComponent } from './Components/Teacher/class-student/class-student.component';
+import { AcademicTermComponent } from './Components/Admin/academic-term/academic-term.component';
 
 const routes: Routes = [
 
   {path:"",component:AdminComponent,children:[
     {path:"",redirectTo:"addTeacher",pathMatch:'full'},
     {path:"addTeacher",component:AddTeacherComponent,title:''},
+    // {path:"addPackageForTeacher/:id",component:PackageForTeacherComponent,title:''},
     {path:"addPackageForTeacher",component:PackageForTeacherComponent,title:''},
+    {path:"academicTerm",component:AcademicTermComponent,title:''},
     {path:"home",component:HomeComponent,title:''},
   ]},
   {path:"",component:TeacherComponent,children:[
-    {path:"",redirectTo:"chooseLesson",pathMatch:'full'},
-    {path:"chooseLesson",component:ChooseLessonComponent,title:'إختيار درس'},
+    {path:"",redirectTo:"classes",pathMatch:'full'},
     {path:"classes",component:ClassesComponent,title:'الفصول'},
+    {path:"chooseLesson",component:ChooseLessonComponent,title:'إختيار درس'},
     {path:"classStudent",component:ClassStudentComponent,title:'الفصول'},
     // {path:"classStudent/:id",component:ClassStudentComponent,title:'الفصول'},
   ]},

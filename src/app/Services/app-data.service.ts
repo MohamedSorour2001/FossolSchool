@@ -7,38 +7,68 @@ import { Observable } from 'rxjs';
 })
 export class AppDataService {
 
-  back:string=""
+  back:string="https://localhost:5001/api/"
   constructor(private HttpClient:HttpClient) { }
 
-  // --------------- Users API's ---------------
-  // GetAllUsers(): Observable<any> {
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${localStorage.getItem('token')}`
-  //   });
-  //   console.log(headers);
-  //   return this.HttpClient.post(this.back + 'Users/get-all-user', {}, { headers });
-  // }
+  // --------------- AcademicTerm API's ---------------
+  GetAllAcademicTerms(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    console.log(headers);
+    return this.HttpClient.post(this.back + 'AcademicTerm/get-all', {}, { headers });
+  }
 
-  // DeleteQuestion(id: any): Observable<any> {
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${localStorage.getItem('token')}`
-  //   });
-  //   return this.HttpClient.post(this.back + 'Question/delete?id=' + id, {}, { headers });
-  // }
+  DeleteAcademicTerm(id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back + 'AcademicTerm/delete/' + id, {}, { headers });
+  }
 
-  // AddQuestion(data:object):Observable<any>{
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${localStorage.getItem('token')}`
-  //   });
-  //   return this.HttpClient.post(this.back+'Question/add',data,{headers});
-  // }
+  AddAcademicTerm(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'AcademicTerm/create',data,{headers});
+  }
 
-  // GetQuestionById(id:any):Observable<any>{
-  //   const headers = new HttpHeaders({
-  //     'Authorization': `Bearer ${localStorage.getItem('token')}`
-  //   });
-  //   return this.HttpClient.post(this.back+'Question/get-by-id?id='+id, {},{headers});
-  // }
+  GetAcademicTermById(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'AcademicTerm/get-by-id/'+id, {},{headers});
+  }
+  // --------------- AcademicTerm API's ---------------
+  GetAllLevels(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    console.log(headers);
+    return this.HttpClient.post(this.back + 'Level/get-all', {}, { headers });
+  }
+
+  GetLevelById(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Level/get-by-id/'+id, {},{headers});
+  }
+
+  DeleteLevel(id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back + 'Level/delete/' + id, {}, { headers });
+  }
+
+  AddLevel(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Level/create',data,{headers});
+  }
+
 
   // EditQuestion(data:object):Observable<any>{
   //   const headers = new HttpHeaders({

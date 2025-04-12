@@ -18,6 +18,7 @@ import { AddTeacherComponent } from './Components/Admin/add-teacher/add-teacher.
 import { PackageForTeacherComponent } from './Components/Admin/package-for-teacher/package-for-teacher.component';
 import { ClassesComponent } from './Components/Teacher/classes/classes.component';
 import { ClassStudentComponent } from './Components/Teacher/class-student/class-student.component';
+import { AcademicTermComponent } from './Components/Admin/academic-term/academic-term.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { ClassStudentComponent } from './Components/Teacher/class-student/class-
     AddTeacherComponent,
     PackageForTeacherComponent,
     ClassesComponent,
-    ClassStudentComponent
+    ClassStudentComponent,
+    AcademicTermComponent
   ],
   imports: [
     BrowserModule,
