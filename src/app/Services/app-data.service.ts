@@ -10,6 +10,41 @@ export class AppDataService {
   back:string="https://localhost:5001/api/"
   constructor(private HttpClient:HttpClient) { }
 
+  // --------------- Users API's ---------------
+
+  GetAllStudents(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    console.log(headers);
+    return this.HttpClient.post(this.back + 'User/get-all-students', {}, { headers });
+  }
+  GetStudentById(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'User/get-by-id-student/'+id, {},{headers});
+  }
+  GetStudentsByTeacherId(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    console.log(headers);
+    return this.HttpClient.post(this.back + 'User/get-students-by-id-teacher', {}, { headers });
+  }
+  AddStudent(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'User/create-student',data,{headers});
+  }
+  AddTeacherDetails(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'User/add-teacher-details',data,{headers});
+  }
+
   // --------------- AcademicTerm API's ---------------
   GetAllAcademicTerms(): Observable<any> {
     const headers = new HttpHeaders({
@@ -122,6 +157,12 @@ export class AppDataService {
     return this.HttpClient.post(this.back+'Subject/get-by-id/'+id, {},{headers});
   }
 
+  GetSubjectByGradelId(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Subject/get-by-grade/'+id, {},{headers});
+  }
   AddSubject(data:object):Observable<any>{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -134,6 +175,41 @@ export class AppDataService {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     return this.HttpClient.post(this.back + 'Subject/delete/' + id, {}, { headers });
+  }
+  // --------------- Class API's ---------------
+  GetAllClasss(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    console.log(headers);
+    return this.HttpClient.post(this.back + 'Class/get-all', {}, { headers });
+  }
+
+  GetClassById(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Class/get-by-id/'+id, {},{headers});
+  }
+
+  GetClassByGradelId(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Class/get-by-grade/'+id, {},{headers});
+  }
+  AddClass(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Class/create',data,{headers});
+  }
+
+  DeleteClass(id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back + 'Class/delete/' + id, {}, { headers });
   }
 
 

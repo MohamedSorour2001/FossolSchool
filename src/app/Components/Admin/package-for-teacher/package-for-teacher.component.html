@@ -28,13 +28,14 @@
     </div> -->
 
 
-    <!-- Educational stage selection -->
+    <form action="" [formGroup]="addClassForm" (ngSubmit)="Submit()">
+    <!-- Level selection -->
     <div class="stage-selection">
       <h3>المرحلة</h3>
       <div class="stages">
-        <div class="big" *ngFor="let level of levels;let i = index">
-          <input type="checkbox" [id]="i" [value]="level.id">
-          <label for={{i}}>{{level.name}}</label>
+        <div class="big" *ngFor="let level of levels; let i = index">
+          <input type="checkbox" [id]="i" [value]="level.id" (change)="onLevelChange(level.id, $event)"  (change)="onSelectLevelMultipleAnswer($event, level)">
+          <label for="{{i}}">{{level.name}}</label>
         </div>
       </div>
     </div>
@@ -43,61 +44,20 @@
     <div class="grade-selection">
       <h3>الصف</h3>
       <div class="stages">
-        <div>
-          <input type="checkbox" id="high-school">
-          <label for="high-school">المرحلة الثانوية</label>
-        </div>
-        <div>
-          <input type="checkbox" id="middle-school">
-          <label for="middle-school">المرحلة المتوسطة</label>
-        </div>
-        <div>
-          <input type="checkbox" id="elementary-school">
-          <label for="elementary-school">المرحلة الابتدائية</label>
-        </div>
-        <div>
-          <input type="checkbox" id="high-school">
-          <label for="high-school">المرحلة الثانوية</label>
-        </div>
-        <div>
-          <input type="checkbox" id="middle-school">
-          <label for="middle-school">المرحلة المتوسطة</label>
-        </div>
-        <div>
-          <input type="checkbox" id="elementary-school">
-          <label for="elementary-school">المرحلة الابتدائية</label>
+        <div *ngFor="let grade of grades; let i = index">
+          <input type="checkbox" [id]="i + 'grade'" [value]="grade.id" (change)="onGradeChange(grade.id, $event)" (change)="onSelectGradeMultipleAnswer($event, grade)">
+          <label for="{{i + 'grade'}}">{{grade.name}}</label>
         </div>
       </div>
     </div>
 
-
     <!-- Subject selection -->
     <div class="subject-selection">
-      <h3>المواد</h3>
+      <h3>المواد الدراسيه</h3>
       <div class="stages">
-        <div>
-          <input type="checkbox" id="high-school">
-          <label for="high-school">المرحلة الثانوية</label>
-        </div>
-        <div>
-          <input type="checkbox" id="middle-school">
-          <label for="middle-school">المرحلة المتوسطة</label>
-        </div>
-        <div>
-          <input type="checkbox" id="elementary-school">
-          <label for="elementary-school">المرحلة الابتدائية</label>
-        </div>
-        <div>
-          <input type="checkbox" id="high-school">
-          <label for="high-school">المرحلة الثانوية</label>
-        </div>
-        <div>
-          <input type="checkbox" id="middle-school">
-          <label for="middle-school">المرحلة المتوسطة</label>
-        </div>
-        <div>
-          <input type="checkbox" id="elementary-school">
-          <label for="elementary-school">المرحلة الابتدائية</label>
+        <div *ngFor="let subject of subjects; let i = index">
+          <input type="checkbox" [id]="i + 'subject'" [value]="subject.id" (change)="onSelectSubjectMultipleAnswer($event, subject)">
+          <label for="{{i + 'subject'}}">{{subject.name}}</label>
         </div>
       </div>
     </div>
@@ -107,33 +67,18 @@
     <div class="subscription-duration">
       <h3>مدة الاشتراك</h3>
       <div class="stages">
-        <div class="package">
-          <input type="checkbox" id="first-season">
-          <p>الفصل الدراسى الأول</p>
+          <div class="package" *ngFor="let AcademicTerm of AcademicTerms; let i = index" >
+          <input type="checkbox" [id]="i + 'AcademicTerm'" [value]="AcademicTerm.id" (change)="onSelectAcademicTermMultipleAnswer($event, AcademicTerm)">
+          <p>{{AcademicTerm.name}}</p>
           <div class="price">
-            <label for="first-season">قم بالاختيار</label>
-            <p>80 ر.س</p>
-          </div>
-        </div>
-        <div class="package">
-          <input type="checkbox" id="second-season">
-          <p>الفصل الدراسى الثانى</p>
-          <div class="price">
-            <label for="second-season">قم بالاختيار</label>
-            <p>80 ر.س</p>
-          </div>
-        </div>
-        <div class="package">
-          <input type="checkbox" id="third-season">
-          <p>الفصل الدراسى الثالت</p>
-          <div class="price">
-            <label for="third-season">قم بالاختيار</label>
+            <label for="{{i + 'AcademicTerm'}}">قم بالاختيار</label>
             <p>80 ر.س</p>
           </div>
         </div>
       </div>
     </div>
     <button>إضافه</button>
+    </form>
   </div>
 </div>
 

@@ -102,23 +102,19 @@
     <table class="table table-striped text-center">
       <thead class="thead">
         <tr>
-          <th>الرقم الطالب</th>
-          <th>اسم الطالب</th>
-          <th>نسبة التفاعل</th>
-          <th>الدرجات</th>
-          <th>الي تاريخ</th>
-          <th>المعلم المشرف</th>
+          <th>الرقم </th>
+          <th>اسم المرحله التعليميه</th>
+          <th>تاريخ البدايه</th>
+          <th>تاريخ النهايه</th>
           <th>الإجراء</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let student of students">
-          <td>{{ student.number }}</td>
-          <td>{{ student.name }}</td>
-          <td>{{ student.interactionRate }}</td>
-          <td>{{ student.grades }}</td>
-          <td>{{ student.date }}</td>
-          <td>{{ student.supervisor }}</td>
+        <tr *ngFor="let academ of AcademicTerms;let i = index">
+          <td>{{i+1}}</td>
+          <td>{{ academ.name }}</td>
+          <td>{{ academ.startDate }}</td>
+          <td>{{ academ.endDate }}</td>
           <td class="actions">
             <i class="fa-solid fa-ellipsis"></i>
             <div class="action">

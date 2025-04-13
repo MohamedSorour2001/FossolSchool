@@ -73,7 +73,7 @@ export class SubjectComponent {
       }
     })
   }
-  GetSubjectss() {
+  GetSubjects() {
     this._AppDataService.GetAllSubjects().subscribe({
       next: (response) => {
         this.subjects = response.data
@@ -87,7 +87,7 @@ export class SubjectComponent {
 
 
   ngOnInit(): void {
-    this.GetSubjectss()
+    this.GetSubjects()
     this.GetLevels()
   }
 

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppDataService } from 'src/app/Services/app-data.service';
+import { distinctUntilChanged } from 'rxjs';
 
 @Component({
   selector: 'app-classes',
@@ -10,43 +11,102 @@ import { AppDataService } from 'src/app/Services/app-data.service';
   styleUrls: ['./classes.component.css']
 })
 export class ClassesComponent {
-  addClass:boolean=false;
+  addClass: boolean = false;
+  classes: any[] = [];
+  levels: any[] = [];
+  grades: any[] = [];
 
-  addClassForm:FormGroup
-      constructor(private db:FormBuilder ,private Router:Router ,private _AppDataService:AppDataService){
-        this.addClassForm=db.group({
-          name:['',[Validators.required]],
-        })
-      }
-
-      get name(){
-        return this.addClassForm.get("name")
-      }
-
-  Toggle(){
-    this.addClass=!this.addClass
+  addClassForm: FormGroup
+  constructor(private db: FormBuilder, private Router: Router, private _AppDataService: AppDataService) {
+    this.addClassForm = db.group({
+      name: ['', [Validators.required]],
+      levelId: ['', [Validators.required]],
+      gradeId: ['', [Validators.required]]
+    });
+    this.addClassForm.get('levelId')?.valueChanges.pipe(
+      distinctUntilChanged()
+    ).subscribe((value) => {
+      this.GetGrades();
+    });
   }
-  GoToEditQuestion(){
-    this.Router.navigate(['Class/students',])
+
+  get name() {
+    return this.addClassForm.get("name")
   }
-  Submit(){
-    // this.isLoading=true;
-    // console.log(this.addClassForm.value)
-    // if(this.addClassForm.valid){
-    //   this._UserDataService.register(this.addClassForm.value).subscribe({
-    //     next:(response)=>{
-    //       this.isLoading=false;
-    //       console.log(response)
-    //       if(response.error==null){
-    //         this.Router.navigate(['/login'])
-    //       }
-    //     },
-    //     error:(err:HttpErrorResponse)=>{
-    //       this.isLoading=false;
-    //       console.log(err.error.message)
-    //     }
-    //   })
-    // }
+  get levelId() {
+    return this.addClassForm.get("levelId")
+  }
+  get gradeId() {
+    return this.addClassForm.get("gradeId")
+  }
+
+  Toggle() {
+    this.addClass = !this.addClass
+  }
+  // GoToEditQuestion() {
+  //   this.Router.navigate(['Class/students',])
+  // }
+
+  GetClasses() {
+    this._AppDataService.GetAllClasss().subscribe({
+      next: (response) => {
+        this.classes = response.data
+        console.log(this.classes)
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
+  GetGrades() {
+    const levelId = this.addClassForm.get('levelId')?.value;
+    if (levelId) {
+      this._AppDataService.GetGradeByLevelId(levelId).subscribe({
+        next: (response) => {
+          console.log(response.data)
+          this.grades = response.data;
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err)
+        }
+      });
+    }
+  }
+  GetLevels() {
+    this._AppDataService.GetAllLevels().subscribe({
+      next: (response) => {
+        this.levels = response.data
+      },
+      error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
+
+  ngOnInit(): void {
+    this.GetClasses()
+    this.GetLevels()
+  }
+
+  Submit() {
+    const apiPayload = {
+      name: this.addClassForm.get('name')?.value,
+      gradeId: this.addClassForm.get('gradeId')?.value
+    };
+    console.log(apiPayload)
+    if(apiPayload!=null){
+      this._AppDataService.AddClass(apiPayload).subscribe({
+        next:(response)=>{
+          if(response.error==null){
+            this.addClassForm.reset()
+            this.Toggle()
+          }
+        },
+        error:(err:HttpErrorResponse)=>{
+          console.log(err.error.message)
+        }
+      })
+    }
   }
 
 }
