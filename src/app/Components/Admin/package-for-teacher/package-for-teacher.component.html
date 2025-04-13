@@ -32,21 +32,12 @@
     <div class="stage-selection">
       <h3>المرحلة</h3>
       <div class="stages">
-        <div class="big">
-          <input type="checkbox" id="elementary-school">
-          <label for="elementary-school">المرحلة الابتدائية</label>
-        </div>
-        <div class="big">
-          <input type="checkbox" id="middle-school">
-          <label for="middle-school">المرحلة المتوسطة</label>
-        </div>
-        <div class="big">
-          <input type="checkbox" id="high-school">
-          <label for="high-school">المرحلة الثانوية</label>
+        <div class="big" *ngFor="let level of levels;let i = index">
+          <input type="checkbox" [id]="i" [value]="level.id">
+          <label for={{i}}>{{level.name}}</label>
         </div>
       </div>
     </div>
-
 
     <!-- Grade selection -->
     <div class="grade-selection">

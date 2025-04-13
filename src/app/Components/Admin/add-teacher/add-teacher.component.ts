@@ -45,8 +45,7 @@ export class AddTeacherComponent {
             const id=response.data;
             if(response.error==null){
               console.log('Teacher Added Successfuly')
-              // this.Router.navigate(['addPackageForTeacher',id ])
-              this.Router.navigate(['addPackageForTeacher'])
+              this.Router.navigate(['addPackageForTeacher',id])
             }
           },
           error:(err:HttpErrorResponse)=>{

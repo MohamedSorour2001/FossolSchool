@@ -12,15 +12,21 @@ import { PackageForTeacherComponent } from './Components/Admin/package-for-teach
 import { ClassesComponent } from './Components/Teacher/classes/classes.component';
 import { ClassStudentComponent } from './Components/Teacher/class-student/class-student.component';
 import { AcademicTermComponent } from './Components/Admin/academic-term/academic-term.component';
+import { LevelComponent } from './Components/Admin/level/level.component';
+import { GradeComponent } from './Components/Admin/grade/grade.component';
+import { SubjectComponent } from './Components/Admin/subject/subject.component';
 
 const routes: Routes = [
 
   {path:"",component:AdminComponent,children:[
     {path:"",redirectTo:"addTeacher",pathMatch:'full'},
     {path:"addTeacher",component:AddTeacherComponent,title:''},
-    // {path:"addPackageForTeacher/:id",component:PackageForTeacherComponent,title:''},
-    {path:"addPackageForTeacher",component:PackageForTeacherComponent,title:''},
+    {path:"addPackageForTeacher/:id",component:PackageForTeacherComponent,title:''},
+    // {path:"addPackageForTeacher",component:PackageForTeacherComponent,title:''},
     {path:"academicTerm",component:AcademicTermComponent,title:''},
+    {path:"level",component:LevelComponent,title:''},
+    {path:"grade",component:GradeComponent,title:''},
+    {path:"subject",component:SubjectComponent,title:''},
     {path:"home",component:HomeComponent,title:''},
   ]},
   {path:"",component:TeacherComponent,children:[
@@ -32,7 +38,7 @@ const routes: Routes = [
   ]},
   {path:"login",component:LoginComponent,title:'تسجيل دخول'},
   {path:"register",component:RegisterComponent,title:'إنشاء حساب'},
-  {path:"**",component:NotFoundComponent,title:'خطأ'},
+  {path:"**",component:NotFoundComponent,title:'خطأ'}
 ];
 
 @NgModule({

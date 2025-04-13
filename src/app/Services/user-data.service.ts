@@ -56,7 +56,7 @@ export class UserDataService {
     return this.role === 'Student';
   }
   isAdmin(): boolean {
-    return this.role === 'Admin';
+    return this.role === 'SuperAdmin';
   }
 
   getRoleFromStorage(): void {

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,7 +18,8 @@ export class AcademicTermComponent {
   ];
 
 
-  ShowAddAcademinTerm:boolean=true;
+  ShowAddAcademinTerm:boolean=false;
+  ShowEditAcademinTerm:boolean=false;
   addClassForm:FormGroup
         constructor(private db:FormBuilder ,private Router:Router ,private _AppDataService:AppDataService){
           this.addClassForm=db.group({
@@ -40,26 +42,25 @@ export class AcademicTermComponent {
     Toggle(){
       this.ShowAddAcademinTerm=!this.ShowAddAcademinTerm
     }
-
-
+    ToggleEdit(){
+      this.ShowEditAcademinTerm=!this.ShowEditAcademinTerm
+    }
 
     Submit(){
       console.log(this.addClassForm.value)
-      // if(this.addClassForm.valid){
-      //   this._UserDataService.register(this.addClassForm.value).subscribe({
-      //     next:(response)=>{
-      //       this.isLoading=false;
-      //       console.log(response)
-      //       if(response.error==null){
-      //         this.Router.navigate(['/login'])
-      //       }
-      //     },
-      //     error:(err:HttpErrorResponse)=>{
-      //       this.isLoading=false;
-      //       console.log(err.error.message)
-      //     }
-      //   })
-      // }
+      if(this.addClassForm.valid){
+        this._AppDataService.AddLevel(this.addClassForm.value).subscribe({
+          next:(response)=>{
+            console.log(response)
+            if(response.error==null){
+              console.log('Level Added Successfuly')
+            }
+          },
+          error:(err:HttpErrorResponse)=>{
+            console.log(err.error.message)
+          }
+        })
+      }
     }
 
 

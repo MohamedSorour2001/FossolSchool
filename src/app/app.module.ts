@@ -19,6 +19,9 @@ import { PackageForTeacherComponent } from './Components/Admin/package-for-teach
 import { ClassesComponent } from './Components/Teacher/classes/classes.component';
 import { ClassStudentComponent } from './Components/Teacher/class-student/class-student.component';
 import { AcademicTermComponent } from './Components/Admin/academic-term/academic-term.component';
+import { LevelComponent } from './Components/Admin/level/level.component';
+import { GradeComponent } from './Components/Admin/grade/grade.component';
+import { SubjectComponent } from './Components/Admin/subject/subject.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +39,10 @@ import { AcademicTermComponent } from './Components/Admin/academic-term/academic
     PackageForTeacherComponent,
     ClassesComponent,
     ClassStudentComponent,
-    AcademicTermComponent
+    AcademicTermComponent,
+    LevelComponent,
+    GradeComponent,
+    SubjectComponent
   ],
   imports: [
     BrowserModule,

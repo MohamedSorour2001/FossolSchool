@@ -15,27 +15,7 @@
                 required />
               <div class="errormsg" [hidden]="name?.valid ||name?.untouched">
                 <small class="text-danger text-end" *ngIf="name?.errors?.['required']">
-                  إسم الفصل مطلوب
-                </small>
-              </div>
-            </div>
-            <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="startDate"> تاريخ البدايه</label>
-              <input type="date" class="form-control text-md-right" name="startDate" id="startDate" formControlName="startDate"
-                required />
-              <div class="errormsg" [hidden]="startDate?.valid ||startDate?.untouched">
-                <small class="text-danger text-end" *ngIf="startDate?.errors?.['required']">
-                  تاريخ البدايه مطلوب
-                </small>
-              </div>
-            </div>
-            <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="endDate"> تاريخ الانتهاء</label>
-              <input type="date" class="form-control text-md-right" name="endDate" id="endDate" formControlName="endDate"
-                required />
-              <div class="errormsg" [hidden]="endDate?.valid ||endDate?.untouched">
-                <small class="text-danger text-end" *ngIf="endDate?.errors?.['required']">
-                  تاريخ الانتهاء مطلوب
+                  إسم المرحله مطلوب
                 </small>
               </div>
             </div>
@@ -49,7 +29,7 @@
   <!-- ---------End Add----------- -->
   <!-- ---------Start Edit----------- -->
 
-  <div class="AdminFlow" *ngIf="ShowEditAcademinTerm">
+  <!-- <div class="AdminFlow" *ngIf="ShowEditAcademinTerm">
     <div class="AdminFlow-content">
       <img src="../../../../assets/images/close.png" alt="close" class="AdminFlow-exit" (click)="ToggleEdit()">
       <h2 class="AdminFlow-h2">تعديل المرحله التعليميه</h2>
@@ -66,32 +46,12 @@
                 </small>
               </div>
             </div>
-            <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="startDate"> تاريخ البدايه</label>
-              <input type="date" class="form-control text-md-right" name="startDate" id="startDate" formControlName="startDate"
-                required />
-              <div class="errormsg" [hidden]="startDate?.valid ||startDate?.untouched">
-                <small class="text-danger text-end" *ngIf="startDate?.errors?.['required']">
-                  تاريخ البدايه مطلوب
-                </small>
-              </div>
-            </div>
-            <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="endDate"> تاريخ الانتهاء</label>
-              <input type="date" class="form-control text-md-right" name="endDate" id="endDate" formControlName="endDate"
-                required />
-              <div class="errormsg" [hidden]="endDate?.valid ||endDate?.untouched">
-                <small class="text-danger text-end" *ngIf="endDate?.errors?.['required']">
-                  تاريخ الانتهاء مطلوب
-                </small>
-              </div>
-            </div>
           </div>
           <button type="submit" class="btn btn-primary">تعديل</button>
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- ---------End Edit----------- -->
   <div class="adminTitle">
@@ -102,23 +62,15 @@
     <table class="table table-striped text-center">
       <thead class="thead">
         <tr>
-          <th>الرقم الطالب</th>
-          <th>اسم الطالب</th>
-          <th>نسبة التفاعل</th>
-          <th>الدرجات</th>
-          <th>الي تاريخ</th>
-          <th>المعلم المشرف</th>
+          <th>#</th>
+          <th>اسم المرحله</th>
           <th>الإجراء</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let student of students">
-          <td>{{ student.number }}</td>
-          <td>{{ student.name }}</td>
-          <td>{{ student.interactionRate }}</td>
-          <td>{{ student.grades }}</td>
-          <td>{{ student.date }}</td>
-          <td>{{ student.supervisor }}</td>
+        <tr *ngFor="let level of levels;let i = index">
+          <td>{{i+1}}</td>
+          <td>{{ level.name }}</td>
           <td class="actions">
             <i class="fa-solid fa-ellipsis"></i>
             <div class="action">
@@ -155,3 +107,4 @@
     </nav>
   </div>
 </div>
+

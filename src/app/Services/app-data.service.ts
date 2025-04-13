@@ -39,7 +39,10 @@ export class AppDataService {
     });
     return this.HttpClient.post(this.back+'AcademicTerm/get-by-id/'+id, {},{headers});
   }
-  // --------------- AcademicTerm API's ---------------
+
+
+
+  // --------------- Level API's ---------------
   GetAllLevels(): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -68,6 +71,98 @@ export class AppDataService {
     });
     return this.HttpClient.post(this.back+'Level/create',data,{headers});
   }
+  // --------------- Grade API's ---------------
+  GetAllGrades(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    console.log(headers);
+    return this.HttpClient.post(this.back + 'Grade/get-all', {}, { headers });
+  }
+
+  GetGradeById(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Grade/get-by-id/'+id, {},{headers});
+  }
+  GetGradeByLevelId(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Grade/get-by-level/'+id, {},{headers});
+  }
+
+  AddGrade(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Grade/create',data,{headers});
+  }
+
+  DeleteGrade(id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back + 'Grade/delete/' + id, {}, { headers });
+  }
+  // --------------- Subject API's ---------------
+  GetAllSubjects(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    console.log(headers);
+    return this.HttpClient.post(this.back + 'Subject/get-all', {}, { headers });
+  }
+
+  GetSubjectById(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Subject/get-by-id/'+id, {},{headers});
+  }
+
+  AddSubject(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Subject/create',data,{headers});
+  }
+
+  DeleteSubject(id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back + 'Subject/delete/' + id, {}, { headers });
+  }
+
+
+  // EditLevel(data:object):Observable<any>{
+  //   const headers = new HttpHeaders({
+  //     'Authorization': `Bearer ${localStorage.getItem('token')}`
+  //   });
+  //   return this.HttpClient.post(this.back+'Question/update',data,{headers});
+  // }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
   // EditQuestion(data:object):Observable<any>{
