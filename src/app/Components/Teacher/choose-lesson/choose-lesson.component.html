@@ -1,8 +1,107 @@
 <div class="container lesson">
   <div class="content">
     <div class="lessonRow">
+      <form action="" [formGroup]="addClassForm" (ngSubmit)="Submit()">
+      <!-- Levels Carousel -->
+      <div class="carousel-container">
+        <h2>المرحلة التعليمية</h2>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-arrow" (click)="goLevelLeft()">
+            <img src="../../../../assets/images/blue-left.png" alt="left">
+          </button>
+          <div class="carousel-content">
+            <div *ngFor="let level of visibleLevels; let i = index" class="col-md-4">
+              <div class="card">
+                <input type="radio" name="levelId" [id]="i + 'level'" [value]="level.id"
+                  (change)="onLevelChange(level.id, $event)">
+                <label for="{{ i + 'level' }}">
+                  {{ level.name }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-arrow" (click)="goLevelRight()">
+            <img src="../../../../assets/images/blue-right.png" alt="right">
+          </button>
+        </div>
+      </div>
+      <hr>
 
+      <!-- Grades Carousel -->
+      <div class="carousel-container">
+        <h2>الصف</h2>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-arrow" (click)="goGradeLeft()">
+            <img src="../../../../assets/images/blue-left.png" alt="left">
+          </button>
+          <div class="carousel-content">
+            <div *ngFor="let grade of visibleGrades; let i = index" class="col-md-4">
+              <div class="card">
+                <input type="radio" name="gradeId" [id]="i + 'grade'" [value]="grade.id"
+                  (change)="onGradeChange(grade.id, $event)">
+                <label for="{{ i + 'grade' }}">
+                  {{ grade.name }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-arrow" (click)="goGradeRight()">
+            <img src="../../../../assets/images/blue-right.png" alt="right">
+          </button>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Subjects Carousel -->
+      <div class="carousel-container">
+        <h2>المادة</h2>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-arrow" (click)="goSubjectLeft()">
+            <img src="../../../../assets/images/blue-left.png" alt="left">
+          </button>
+          <div class="carousel-content">
+            <div *ngFor="let subject of visibleSubjects; let i = index" class="col-md-4">
+              <div class="card">
+                <input type="radio" name="subjectId" [id]="i + 'subject'" [value]="subject.id"
+                  (change)="onSubjectChange(subject.id, $event)">
+                <label for="{{ i + 'subject' }}">
+                  {{ subject.name }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-arrow" (click)="goSubjectRight()">
+            <img src="../../../../assets/images/blue-right.png" alt="right">
+          </button>
+        </div>
+      </div>
+      <hr>
+
+      <!-- Lessons Carousel -->
+      <div class="carousel-container">
+        <h2>الدرس</h2>
+        <div class="d-flex align-items-center">
+          <button class="btn btn-arrow" (click)="goLessonLeft()">
+            <img src="../../../../assets/images/blue-left.png" alt="left">
+          </button>
+          <div class="carousel-content">
+            <div *ngFor="let lesson of visibleLessons; let i = index" class="col-md-4">
+              <div class="card">
+                <input type="radio" name="lessonId" [id]="i + 'lesson'" [value]="lesson.id"
+                  (change)="onLessonChange(lesson.id, $event)">
+                <label for="{{ i + 'lesson' }}">
+                  {{ lesson.title }}
+                </label>
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-arrow" (click)="goLessonRight()">
+            <img src="../../../../assets/images/blue-right.png" alt="right">
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="btn mt-3 submit">عرض</button>
+      </form>
     </div>
   </div>
 </div>
-

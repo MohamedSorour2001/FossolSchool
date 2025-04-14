@@ -56,11 +56,11 @@
           <img src="../../../../assets/images/class.png" alt="classImage">
           <div>
             <p>عدد الطلاب</p>
-            <span>22</span>
+            <span>{{class.studentDTOs.length}}</span>
           </div>
         </div>
         <div class="class-bottom">
-          <button>الطلاب</button>
+          <button (click)="GoToClassStudent(class.id)">الطلاب</button>
           <div>
             <i class="fa-regular fa-trash-can"></i>
             <i class="fa-solid fa-screwdriver-wrench"></i>

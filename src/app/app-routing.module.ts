@@ -15,6 +15,7 @@ import { AcademicTermComponent } from './Components/Admin/academic-term/academic
 import { LevelComponent } from './Components/Admin/level/level.component';
 import { GradeComponent } from './Components/Admin/grade/grade.component';
 import { SubjectComponent } from './Components/Admin/subject/subject.component';
+import { LessonComponent } from './Components/Admin/lesson/lesson.component';
 
 const routes: Routes = [
 
@@ -27,14 +28,15 @@ const routes: Routes = [
     {path:"level",component:LevelComponent,title:''},
     {path:"grade",component:GradeComponent,title:''},
     {path:"subject",component:SubjectComponent,title:''},
+    {path:"lesson",component:LessonComponent,title:''},
     {path:"home",component:HomeComponent,title:''},
   ]},
   {path:"",component:TeacherComponent,children:[
     {path:"",redirectTo:"classes",pathMatch:'full'},
     {path:"classes",component:ClassesComponent,title:'الفصول'},
     {path:"chooseLesson",component:ChooseLessonComponent,title:'إختيار درس'},
-    {path:"classStudent",component:ClassStudentComponent,title:'الفصول'},
-    // {path:"classStudent/:id",component:ClassStudentComponent,title:'الفصول'},
+    // {path:"classStudent",component:ClassStudentComponent,title:'الفصول'},
+    {path:"classStudent/:id",component:ClassStudentComponent,title:'الفصول'},
   ]},
   {path:"login",component:LoginComponent,title:'تسجيل دخول'},
   {path:"register",component:RegisterComponent,title:'إنشاء حساب'},

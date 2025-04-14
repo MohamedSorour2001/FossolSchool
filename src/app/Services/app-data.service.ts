@@ -176,6 +176,57 @@ export class AppDataService {
     });
     return this.HttpClient.post(this.back + 'Subject/delete/' + id, {}, { headers });
   }
+  // --------------- Lesson API's ---------------
+  GetAllLessons(): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    console.log(headers);
+    return this.HttpClient.post(this.back + 'Lesson/get-all-lessons', {}, { headers });
+  }
+
+  GetLessonById(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Lesson/get-lesson-by-id/'+id, {},{headers});
+  }
+
+  GetLessonBySubjectlId(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Lesson/get-lessons-by-subject/'+id, {},{headers});
+  }
+
+  AddLesson(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Lesson/create-lesson',data,{headers});
+  }
+
+  UpdateLesson(id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back + 'Lesson/update-lesson/' + id, {}, { headers });
+  }
+
+  DeleteLesson(id: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back + 'Lesson/delete-lesson/' + id, {}, { headers });
+  }
+
+  UploadLessonResource(data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Lesson/upload-resource',data,{headers});
+  }
+
   // --------------- Class API's ---------------
   GetAllClasss(): Observable<any> {
     const headers = new HttpHeaders({
@@ -190,6 +241,12 @@ export class AppDataService {
       'Authorization': `Bearer ${localStorage.getItem('token')}`
     });
     return this.HttpClient.post(this.back+'Class/get-by-id/'+id, {},{headers});
+  }
+  GetStudentsByClassId(id:any,classId:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Class/get-students-by-class-id/'+id+'?classid='+classId, {},{headers});
   }
 
   GetClassByGradelId(id:any):Observable<any>{

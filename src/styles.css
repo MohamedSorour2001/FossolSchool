@@ -101,6 +101,28 @@ small.text-danger{
   min-height: 200px;
 }
 
+.manooFlow .manooFlow-content .form-group label{
+  margin-bottom: 15px;
+
+}
+.manooFlow .manooFlow-content .form-group input{
+  background-color: var(--grey-color);
+  border: none;
+  border-radius: 25px;
+}
+.manooFlow .manooFlow-content button{
+  background-color:var(--nav-color);
+  padding: 5px 15px;
+  border-radius: 25px;
+  width: fit-content;
+  color:var(--brown-color);
+  border:none;
+  outline: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+
 /* ---backGrounds--- */
 .parent{
   position:relative;

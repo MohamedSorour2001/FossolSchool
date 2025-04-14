@@ -5,37 +5,56 @@
   <div class="AdminFlow" *ngIf="ShowAddAcademinTerm">
     <div class="AdminFlow-content">
       <img src="../../../../assets/images/close.png" alt="close" class="AdminFlow-exit" (click)="Toggle()">
-      <h2 class="AdminFlow-h2">إضافه فصل دراسى</h2>
+      <h2 class="AdminFlow-h2">إضافه درس</h2>
       <div>
-        <form action="" [formGroup]="addClassForm" (ngSubmit)="Submit()">
+        <form [formGroup]="addClassForm" (ngSubmit)="Submit()">
           <div class="AdminFlow-info">
+            <!-- Subject Name -->
             <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="name"> إسم المرحله</label>
-              <input type="text" class="form-control text-md-right" name="name" id="name" formControlName="name"
-                required />
-              <div class="errormsg" [hidden]="name?.valid ||name?.untouched">
+              <label class="label mb-2" for="name"> عنوان الدرس</label>
+              <input type="text" class="form-control text-md-right" name="name" id="name" formControlName="name" required />
+              <div class="errormsg" [hidden]="name?.valid || name?.untouched">
                 <small class="text-danger text-end" *ngIf="name?.errors?.['required']">
-                  إسم الفصل مطلوب
+                  عنوان الدرس مطلوب
                 </small>
               </div>
             </div>
+            <!-- Level Selection -->
             <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="startDate"> تاريخ البدايه</label>
-              <input type="date" class="form-control text-md-right" name="startDate" id="startDate" formControlName="startDate"
-                required />
-              <div class="errormsg" [hidden]="startDate?.valid ||startDate?.untouched">
-                <small class="text-danger text-end" *ngIf="startDate?.errors?.['required']">
-                  تاريخ البدايه مطلوب
+              <label for="levelId" class="form-label"> إختر المرحله</label>
+              <select class="form-select" name="levelId" formControlName="levelId" aria-label="Default select example">
+                <option selected disabled>إختر المرحله</option>
+                <option *ngFor="let level of levels" [value]="level.id">{{ level.name }}</option>
+              </select>
+              <div class="errormsg" [hidden]="levelId?.valid || levelId?.untouched">
+                <small class="text-danger text-end" *ngIf="levelId?.errors?.['required']">
+                  المرحله مطلوبه
                 </small>
               </div>
             </div>
+            <!-- Grade Selection -->
             <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="endDate"> تاريخ الانتهاء</label>
-              <input type="date" class="form-control text-md-right" name="endDate" id="endDate" formControlName="endDate"
-                required />
-              <div class="errormsg" [hidden]="endDate?.valid ||endDate?.untouched">
-                <small class="text-danger text-end" *ngIf="endDate?.errors?.['required']">
-                  تاريخ الانتهاء مطلوب
+              <label for="gradeId" class="form-label"> إختر الصف</label>
+              <select class="form-select" name="gradeId" formControlName="gradeId" aria-label="Default select example">
+                <option selected disabled>إختر الصف</option>
+                <option *ngFor="let grade of grades" [value]="grade.id">{{ grade.name }}</option>
+              </select>
+              <div class="errormsg" [hidden]="gradeId?.valid || gradeId?.untouched">
+                <small class="text-danger text-end" *ngIf="gradeId?.errors?.['required']">
+                  الصف مطلوب
+                </small>
+              </div>
+            </div>
+            <!-- Subject Selection (Dependent on Grade) -->
+            <div class="form-group mb-3 text-md-right">
+              <label for="subjectId" class="form-label"> إختر المادة</label>
+              <select class="form-select" name="subjectId" formControlName="subjectId" aria-label="Default select example">
+                <option selected disabled>إختر المادة</option>
+                <option *ngFor="let subject of subjects" [value]="subject.id">{{ subject.name }}</option>
+              </select>
+              <div class="errormsg" [hidden]="subjectId?.valid || subjectId?.untouched">
+                <small class="text-danger text-end" *ngIf="subjectId?.errors?.['required']">
+                  المادة مطلوبه
                 </small>
               </div>
             </div>
@@ -46,10 +65,11 @@
     </div>
   </div>
 
+
   <!-- ---------End Add----------- -->
   <!-- ---------Start Edit----------- -->
 
-  <div class="AdminFlow" *ngIf="ShowEditAcademinTerm">
+  <!-- <div class="AdminFlow" *ngIf="ShowEditAcademinTerm">
     <div class="AdminFlow-content">
       <img src="../../../../assets/images/close.png" alt="close" class="AdminFlow-exit" (click)="ToggleEdit()">
       <h2 class="AdminFlow-h2">تعديل المرحله التعليميه</h2>
@@ -66,55 +86,35 @@
                 </small>
               </div>
             </div>
-            <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="startDate"> تاريخ البدايه</label>
-              <input type="date" class="form-control text-md-right" name="startDate" id="startDate" formControlName="startDate"
-                required />
-              <div class="errormsg" [hidden]="startDate?.valid ||startDate?.untouched">
-                <small class="text-danger text-end" *ngIf="startDate?.errors?.['required']">
-                  تاريخ البدايه مطلوب
-                </small>
-              </div>
-            </div>
-            <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="endDate"> تاريخ الانتهاء</label>
-              <input type="date" class="form-control text-md-right" name="endDate" id="endDate" formControlName="endDate"
-                required />
-              <div class="errormsg" [hidden]="endDate?.valid ||endDate?.untouched">
-                <small class="text-danger text-end" *ngIf="endDate?.errors?.['required']">
-                  تاريخ الانتهاء مطلوب
-                </small>
-              </div>
-            </div>
           </div>
           <button type="submit" class="btn btn-primary">تعديل</button>
         </form>
       </div>
     </div>
-  </div>
+  </div> -->
 
   <!-- ---------End Edit----------- -->
   <div class="adminTitle">
-    <h3>الفصول الدراسيه</h3>
-    <button (click)="Toggle()">إضافه مرحله</button>
+    <h3>الدروس</h3>
+    <button (click)="Toggle()">إضافه درس</button>
   </div>
   <div class="adminTable">
     <table class="table table-striped text-center">
       <thead class="thead">
         <tr>
-          <th>الرقم </th>
-          <th>اسم الفصل الدراسى</th>
-          <th>تاريخ البدايه</th>
-          <th>تاريخ النهايه</th>
+          <th>#</th>
+          <th>عنوان الدرس</th>
+          <th>المرحله</th>
+          <th>الصف</th>
           <th>الإجراء</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let academ of AcademicTerms;let i = index">
+        <tr *ngFor="let lesson of lessons;let i = index">
           <td>{{i+1}}</td>
-          <td>{{ academ.name }}</td>
-          <td>{{ academ.startDate }}</td>
-          <td>{{ academ.endDate }}</td>
+          <td>{{ lesson.title }}</td>
+          <td>{{ lesson.levelName }}</td>
+          <td>{{ lesson.gradeName }}</td>
           <td class="actions">
             <i class="fa-solid fa-ellipsis"></i>
             <div class="action">
@@ -132,7 +132,7 @@
         </tr>
       </tbody>
     </table>
-    <nav aria-label="Page navigation example">
+    <!-- <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Previous">
@@ -148,6 +148,6 @@
           </a>
         </li>
       </ul>
-    </nav>
+    </nav> -->
   </div>
 </div>

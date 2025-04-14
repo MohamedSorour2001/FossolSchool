@@ -43,9 +43,9 @@ export class ClassesComponent {
   Toggle() {
     this.addClass = !this.addClass
   }
-  // GoToEditQuestion() {
-  //   this.Router.navigate(['Class/students',])
-  // }
+  GoToClassStudent(id:any) {
+    this.Router.navigate(['classStudent',id])
+  }
 
   GetClasses() {
     this._AppDataService.GetAllClasss().subscribe({

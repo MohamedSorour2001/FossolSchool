@@ -1,3 +1,46 @@
+<div class="manooFlow" *ngIf="addStudent">
+  <div class="manooFlow-content">
+    <img src="../../../../assets/images/close.png" alt="close" class="manooFlow-exit" (click)="Toggle()">
+    <h2 class="manooFlow-h2">إضافه فصل</h2>
+    <div>
+      <form action="" [formGroup]="addClassForm" (ngSubmit)="Submit()">
+        <div class="manooFlow-info">
+          <div class="form-group mb-3 text-md-right">
+            <label class="label mb-2" for="userName">إسم الطالب</label>
+            <input type="text" class="form-control" name="userName" id="userName" formControlName="userName"
+              placeholder="قم باضافه إسم الطالب" required />
+            <div class="errormsg" [hidden]="userName?.valid ||userName?.untouched">
+              <small class="text-danger" *ngIf="userName?.errors?.['required']">
+                إسم الطالب مطلوب
+              </small>
+            </div>
+          </div>
+          <div class="form-group mb-3 text-md-right">
+            <label class="label mb-2" for="userEmail">البريد الإلكترونى</label>
+            <input type="text" class="form-control" name="userEmail" id="userEmail" formControlName="userEmail"
+              placeholder="قم بإضافه البريد الإلكترونى" required />
+            <div class="errormsg" [hidden]="userEmail?.valid ||userEmail?.untouched">
+              <small class="text-danger" *ngIf="userEmail?.errors?.['required']">
+                البريد الإلكترونى مطلوب
+              </small>
+            </div>
+          </div>
+          <label class="label mb-2" for="password">كلمه السر</label>
+          <input type="password" class="form-control" id="password" formControlName="password" placeholder="********"
+            required />
+          <div class="errormsg" [hidden]="password?.valid ||password?.untouched">
+            <small class="text-danger" *ngIf="password?.errors?.['required']">
+              الباسوورد مطلوب
+            </small>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">حفظ</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
 <div class="container manooTemp mb-5">
   <div class="content">
     <div class="top">
@@ -8,7 +51,7 @@
         <p>إضافه طالب</p>
         <i class="fa-solid fa-user-plus"></i>
         <div class="drop">
-          <p>إضافه طالب يدوى</p>
+          <p (click)="Toggle()">إضافه طالب يدوى</p>
           <p>إضافه عن طريق إكسيل</p>
         </div>
       </div>
@@ -16,20 +59,20 @@
     <div class="middle">
       <div>
         <h3>الصف</h3>
-        <p>أولى إبتدائ</p>
+        <p>{{class.gradeName}}</p>
       </div>
       <div>
         <h3>الفصل</h3>
-        <p>2</p>
+        <p>{{class.name}}</p>
       </div>
       <div>
         <h3>عدد الطلاب</h3>
-        <p>55</p>
+        <p>{{class.studentDTOs.length}}</p>
       </div>
     </div>
     <div class="bottom">
       <table>
-          <div class="thead w-100 mb-2">
+        <div class="thead w-100 mb-2">
           <div class="text-center row w-100">
             <th scope="col" class="col-1">رقم</th>
             <th scope="col" class="col-1"></th>
@@ -39,9 +82,9 @@
             <th scope="col" class="col-3">النقاط</th>
           </div>
         </div>
-        <div class="tbody w-100 mb-2">
+        <div class="tbody w-100 mb-2" *ngFor="let student of class.studentDTOs;let i = index">
           <div class="text-center row w-100">
-            <td class="col-1">1</td>
+            <td class="col-1">{{i+1}}</td>
             <td class="col-1 studentImage"><img src="../../../../assets/images/student.png" alt="student">
               <div class="studentSetting">
                 <p>
@@ -58,112 +101,12 @@
                 </p>
               </div>
             </td>
-            <td class="col-3 name">محمد عماد سرور</td>
+            <td class="col-3 name">{{student.userName}}</td>
             <td class="col-2">1365</td>
             <td class="col-2">01040516944</td>
             <td class="col-3">إجمالى النقاط <span>95</span></td>
           </div>
-      </div>
-        <div class="tbody w-100 mb-2">
-          <div class="text-center row w-100">
-            <td class="col-1">1</td>
-            <td class="col-1 studentImage"><img src="../../../../assets/images/student.png" alt="student">
-              <div class="studentSetting">
-                <p>
-                  <i class="fa-regular fa-user"></i>
-                  الملف الشخصى
-                </p>
-                <p>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  تعديل الطالب
-                </p>
-                <p>
-                  <i class="fa-regular fa-trash-can"></i>
-                  حذف الطالب
-                </p>
-              </div>
-            </td>
-            <td class="col-3 name">محمد عماد سرور</td>
-            <td class="col-2">1365</td>
-            <td class="col-2">01040516944</td>
-            <td class="col-3">إجمالى النقاط <span>95</span></td>
-          </div>
-      </div>
-        <div class="tbody w-100 mb-2">
-          <div class="text-center row w-100">
-            <td class="col-1">1</td>
-            <td class="col-1 studentImage"><img src="../../../../assets/images/student.png" alt="student">
-              <div class="studentSetting">
-                <p>
-                  <i class="fa-regular fa-user"></i>
-                  الملف الشخصى
-                </p>
-                <p>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  تعديل الطالب
-                </p>
-                <p>
-                  <i class="fa-regular fa-trash-can"></i>
-                  حذف الطالب
-                </p>
-              </div>
-            </td>
-            <td class="col-3 name">محمد عماد سرور</td>
-            <td class="col-2">1365</td>
-            <td class="col-2">01040516944</td>
-            <td class="col-3">إجمالى النقاط <span>95</span></td>
-          </div>
-      </div>
-        <div class="tbody w-100 mb-2">
-          <div class="text-center row w-100">
-            <td class="col-1">1</td>
-            <td class="col-1 studentImage"><img src="../../../../assets/images/student.png" alt="student">
-              <div class="studentSetting">
-                <p>
-                  <i class="fa-regular fa-user"></i>
-                  الملف الشخصى
-                </p>
-                <p>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  تعديل الطالب
-                </p>
-                <p>
-                  <i class="fa-regular fa-trash-can"></i>
-                  حذف الطالب
-                </p>
-              </div>
-            </td>
-            <td class="col-3 name">محمد عماد سرور</td>
-            <td class="col-2">1365</td>
-            <td class="col-2">01040516944</td>
-            <td class="col-3">إجمالى النقاط <span>95</span></td>
-          </div>
-      </div>
-        <div class="tbody w-100 mb-2">
-          <div class="text-center row w-100">
-            <td class="col-1">1</td>
-            <td class="col-1 studentImage"><img src="../../../../assets/images/student.png" alt="student">
-              <div class="studentSetting">
-                <p>
-                  <i class="fa-regular fa-user"></i>
-                  الملف الشخصى
-                </p>
-                <p>
-                  <i class="fa-solid fa-pen-to-square"></i>
-                  تعديل الطالب
-                </p>
-                <p>
-                  <i class="fa-regular fa-trash-can"></i>
-                  حذف الطالب
-                </p>
-              </div>
-            </td>
-            <td class="col-3 name">محمد عماد سرور</td>
-            <td class="col-2">1365</td>
-            <td class="col-2">01040516944</td>
-            <td class="col-3">إجمالى النقاط <span>95</span></td>
-          </div>
-      </div>
+        </div>
       </table>
     </div>
   </div>

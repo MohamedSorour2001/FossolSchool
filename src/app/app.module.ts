@@ -23,6 +23,8 @@ import { LevelComponent } from './Components/Admin/level/level.component';
 import { GradeComponent } from './Components/Admin/grade/grade.component';
 import { SubjectComponent } from './Components/Admin/subject/subject.component';
 import { DatePipe } from '@angular/common';
+import { CarouselComponent } from './Components/Shared/carousel/carousel.component';
+import { LessonComponent } from './Components/Admin/lesson/lesson.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { DatePipe } from '@angular/common';
     AcademicTermComponent,
     LevelComponent,
     GradeComponent,
-    SubjectComponent
+    SubjectComponent,
+    CarouselComponent,
+    LessonComponent
   ],
   imports: [
     BrowserModule,
