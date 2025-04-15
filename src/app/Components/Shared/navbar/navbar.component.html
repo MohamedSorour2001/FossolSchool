@@ -35,23 +35,23 @@
           <img src="../../../assets/images/calendar-link.png" />
           <span>طلاب الفصل</span>
         </div> -->
-        <div class="nav-item" routerLink="academicTerm">
+        <div *ngIf="role=='SuperAdmin'" class="nav-item" routerLink="academicTerm">
           <img src="../../../assets/images/calendar-link.png" />
           <span>الفصول الدراسيه</span>
         </div>
-        <div class="nav-item" routerLink="level">
+        <div *ngIf="role=='SuperAdmin'" class="nav-item" routerLink="level">
           <img src="../../../assets/images/calendar-link.png" />
           <span>المراحل التعليميه</span>
         </div>
-        <div class="nav-item" routerLink="grade">
+        <div *ngIf="role=='SuperAdmin'" class="nav-item" routerLink="grade">
           <img src="../../../assets/images/calendar-link.png" />
           <span>الصفوف</span>
         </div>
-        <div class="nav-item" routerLink="subject">
+        <div *ngIf="role=='SuperAdmin'" class="nav-item" routerLink="subject">
           <img src="../../../assets/images/calendar-link.png" />
           <span>المواد الدراسيه</span>
         </div>
-        <div class="nav-item" routerLink="lesson">
+        <div *ngIf="role=='SuperAdmin'" class="nav-item" routerLink="lesson">
           <img src="../../../assets/images/calendar-link.png" />
           <span>الدروس</span>
         </div>
@@ -68,7 +68,7 @@
           <img src="../../../../assets/images/home-black.png" />
           <span>الرئيسيه</span>
         </div> -->
-        <div class="nav-item" routerLink="/addTeacher">
+        <div *ngIf="role=='SuperAdmin'" class="nav-item" routerLink="/addTeacher">
           <img src="../../../assets/images/calendar-link.png" />
           <span>إضافه معلم</span>
         </div>

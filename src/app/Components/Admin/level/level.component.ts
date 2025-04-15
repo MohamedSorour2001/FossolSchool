@@ -36,9 +36,19 @@ export class LevelComponent implements OnInit {
         this._AppDataService.GetAllLevels().subscribe({
           next:(response)=>{
             this.levels=response.data
-            console.log(this.levels)
           },
           error:(err:HttpErrorResponse)=>{
+            console.log(err)
+          }
+        })
+      }
+
+      deleteLevel(id:any){
+        this._AppDataService.DeleteLevel(id).subscribe({
+          next:(response)=>{
+            window.console.warn('Level Deleted Successfully!');
+            this.GetLevels()
+          },error:(err:HttpErrorResponse)=>{
             console.log(err)
           }
         })
@@ -54,9 +64,11 @@ export class LevelComponent implements OnInit {
         if(this.addClassForm.valid){
           this._AppDataService.AddLevel(this.addClassForm.value).subscribe({
             next:(response)=>{
-              console.log(response)
               if(response.error==null){
-                console.log('Level Added Successfuly')
+                window.console.warn('Level Added Successfully!');
+                this.ShowAddAcademinTerm=false;
+                this.GetLevels()
+                this.addClassForm.reset()
               }
             },
             error:(err:HttpErrorResponse)=>{

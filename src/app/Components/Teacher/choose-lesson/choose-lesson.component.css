@@ -68,7 +68,7 @@ input[type="radio"] {
   background-color: var(--brown-color);
   color: #fff;
 }
-form{
+.lessonRow{
   text-align: center;
 }
 button.submit{
@@ -86,4 +86,17 @@ button.submit{
 }
 button.submit:hover{
   background-color:var(--light-blue);
+}
+
+
+
+.manooFlow-h2{
+  font-size: 26px;
+  font-weight: bold;
+}
+.formButtoms{
+  padding: 10px;
+  border-radius: 25px;
+  direction: rtl;
+  margin-bottom: 10px;
 }

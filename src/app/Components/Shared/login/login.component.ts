@@ -28,7 +28,6 @@ export class LoginComponent {
 
 
   Submit(){
-    console.log(this.loginForm.value)
     if(this.loginForm.valid){
       this._UserDataService.login(this.loginForm.value).subscribe({
         next:(response)=>{

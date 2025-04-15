@@ -17,6 +17,9 @@ export class ChooseLessonComponent implements OnInit {
   grades: any[] = [];
   subjects: any[] = [];
   lessons: any[] = [];
+  lessonData:any;
+  lessonFiles:any;
+  showLessonData:boolean=false;
 
   // Arrays used to show a carousel “window” of 3 items.
   visibleLevels: any[] = [];
@@ -224,7 +227,6 @@ export class ChooseLessonComponent implements OnInit {
         this.visibleLevels.push(this.levels[index]);
       }
     }
-    console.log("Visible Levels:", this.visibleLevels);
   }
 
   // Update visibleGrades for the grades carousel.
@@ -240,7 +242,6 @@ export class ChooseLessonComponent implements OnInit {
         this.visibleGrades.push(this.grades[index]);
       }
     }
-    console.log("Visible Grades:", this.visibleGrades);
   }
 
   // Update visibleSubjects for the subjects carousel.
@@ -256,7 +257,6 @@ export class ChooseLessonComponent implements OnInit {
         this.visibleSubjects.push(this.subjects[index]);
       }
     }
-    console.log("Visible Subjects:", this.visibleSubjects);
   }
 
   // Update visibleLessons for the lessons carousel.
@@ -272,7 +272,6 @@ export class ChooseLessonComponent implements OnInit {
         this.visibleLessons.push(this.lessons[index]);
       }
     }
-    console.log("Visible Lessons:", this.visibleLessons);
   }
 
   // Navigation for Levels carousel.
@@ -328,6 +327,37 @@ export class ChooseLessonComponent implements OnInit {
     if (this.lessons.length > 0) {
       this.currentLessonIndex = (this.currentLessonIndex + 1) % this.lessons.length;
       this.updateVisibleLessons();
+    }
+  }
+
+  Toggle(){
+    this.showLessonData=!this.showLessonData
+  }
+
+  GoTOLessonData(): void {
+    if(this.lessonId){
+      this._AppDataService.GetLessonById(this.lessonId.value).subscribe({
+        next: (response) => {
+          this.lessonData = response.data;
+          this.showLessonData=true;
+          console.log(this.lessonData)
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error(err);
+          this.showLessonData=false;
+        }
+      });
+      this._AppDataService.GetLessonResources(this.lessonId.value).subscribe({
+        next: (response) => {
+          this.lessonFiles = response.data;
+          this.showLessonData=true;
+          console.log(this.lessonData)
+        },
+        error: (err: HttpErrorResponse) => {
+          console.error(err);
+          this.showLessonData=false;
+        }
+      });
     }
   }
 

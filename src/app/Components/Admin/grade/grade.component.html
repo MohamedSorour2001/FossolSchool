@@ -71,7 +71,10 @@
     <button (click)="Toggle()">إضافه صف</button>
   </div>
   <div class="adminTable">
-    <table class="table table-striped text-center">
+    <div class="dataNotFound" *ngIf="grades.length==0">
+      <p>لا توجد بيانات حتى الأن</p>
+    </div>
+    <table class="table table-striped text-center" *ngIf="grades.length>0">
       <thead class="thead">
         <tr>
           <th>#</th>
@@ -93,7 +96,7 @@
                 <i class="fa-solid fa-gear"></i>
               </p>
               <hr class="m-0">
-              <p class="text-danger">
+              <p class="text-danger" (click)="deleteGrade(grade.id)">
                 حذف ..
                 <i class="fa-regular fa-trash-can"></i>
               </p>
@@ -102,7 +105,7 @@
         </tr>
       </tbody>
     </table>
-    <nav aria-label="Page navigation example">
+    <!-- <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Previous">
@@ -118,6 +121,6 @@
           </a>
         </li>
       </ul>
-    </nav>
+    </nav> -->
   </div>
 </div>

@@ -1,7 +1,66 @@
+<div class="manooFlow" *ngIf="showLessonData">
+  <div class="manooFlow-content">
+    <img src="../../../../assets/images/close.png" alt="close" class="manooFlow-exit" (click)="Toggle()">
+    <h2 class="manooFlow-h2" *ngIf="!lessonData">محمد سرور</h2>
+    <h2 class="manooFlow-h2" *ngIf="lessonData">{{lessonData.title}}</h2>
+    <div>
+      <form action="" [formGroup]="addClassForm" (ngSubmit)="Submit()">
+        <div class="formButtoms d-flex align-items-center justify-content-between">
+          <button type="submit" class="btn btn-primary">
+            تحميل
+            <i class="fa-solid fa-download"></i>
+          </button>
+          <button type="submit" class="btn btn-primary">حفظ</button>
+        </div>
+        <div class="manooFlow-info">
+          <div class="form-group mb-3 text-md-right">
+            <label for="levelId" class="form-label"> إختر المرحله</label>
+            <select class="form-select" name="levelId" formControlName="levelId" aria-label="Default select example">
+              <option selected disabled>إختر المرحله</option>
+              <option value={{level.id}} *ngFor="let level of levels">{{level.name}}</option>
+            </select>
+            <div class="errormsg" [hidden]="levelId?.valid ||levelId?.untouched">
+              <small class="text-danger text-end" *ngIf="levelId?.errors?.['required']">
+                المرحله مطلوبه
+              </small>
+            </div>
+          </div>
+          <div class="form-group mb-3 text-md-right">
+            <label for="gradeId" class="form-label"> إختر الصف</label>
+            <select class="form-select" name="gradeId" formControlName="gradeId" aria-label="Default select example">
+              <option selected disabled>إختر الصف</option>
+              <option value={{grade.id}} *ngFor="let grade of grades">{{grade.name}}</option>
+            </select>
+            <div class="errormsg" [hidden]="gradeId?.valid ||gradeId?.untouched">
+              <small class="text-danger text-end" *ngIf="gradeId?.errors?.['required']">
+                الصف مطلوبه
+              </small>
+            </div>
+          </div>
+        <div class="form-group mb-3 text-md-right">
+          <label class="label mb-2" for="name"> إسم الفصل</label>
+          <input type="text" class="form-control text-md-right" name="name" id="name" formControlName="name" required />
+          <div class="errormsg" [hidden]="name?.valid ||name?.untouched">
+            <small class="text-danger text-end" *ngIf="name?.errors?.['required']">
+              إسم الفصل مطلوب
+            </small>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
 <div class="container lesson">
   <div class="content">
     <div class="lessonRow">
-      <form action="" [formGroup]="addClassForm" (ngSubmit)="Submit()">
       <!-- Levels Carousel -->
       <div class="carousel-container">
         <h2>المرحلة التعليمية</h2>
@@ -100,8 +159,7 @@
           </button>
         </div>
       </div>
-      <button type="submit" class="btn mt-3 submit">عرض</button>
-      </form>
+      <button type="submit" class="btn mt-3 submit" (click)="GoTOLessonData()">عرض</button>
     </div>
   </div>
 </div>

@@ -43,15 +43,14 @@ export class ClassesComponent {
   Toggle() {
     this.addClass = !this.addClass
   }
-  GoToClassStudent(id:any) {
-    this.Router.navigate(['classStudent',id])
+  GoToClassStudent(id: any) {
+    this.Router.navigate(['classStudent', id])
   }
 
   GetClasses() {
     this._AppDataService.GetAllClasss().subscribe({
       next: (response) => {
         this.classes = response.data
-        console.log(this.classes)
       },
       error: (err: HttpErrorResponse) => {
         console.log(err)
@@ -63,7 +62,6 @@ export class ClassesComponent {
     if (levelId) {
       this._AppDataService.GetGradeByLevelId(levelId).subscribe({
         next: (response) => {
-          console.log(response.data)
           this.grades = response.data;
         },
         error: (err: HttpErrorResponse) => {
@@ -83,29 +81,42 @@ export class ClassesComponent {
     })
   }
 
+  deleteClass(id: any) {
+    this._AppDataService.DeleteClass(id).subscribe({
+      next: (response) => {
+        window.console.warn('Class Deleted Successfully!');
+        this.GetClasses()
+      }, error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
+
   ngOnInit(): void {
     this.GetClasses()
     this.GetLevels()
   }
 
   Submit() {
-    const apiPayload = {
-      name: this.addClassForm.get('name')?.value,
-      gradeId: this.addClassForm.get('gradeId')?.value
-    };
-    console.log(apiPayload)
-    if(apiPayload!=null){
-      this._AppDataService.AddClass(apiPayload).subscribe({
-        next:(response)=>{
-          if(response.error==null){
-            this.addClassForm.reset()
-            this.Toggle()
+    if (this.addClassForm.valid) {
+      const apiPayload = {
+        name: this.addClassForm.get('name')?.value,
+        gradeId: this.addClassForm.get('gradeId')?.value
+      };
+      if (apiPayload != null) {
+        this._AppDataService.AddClass(apiPayload).subscribe({
+          next: (response) => {
+            if (response.error == null) {
+              window.console.warn('Class Added Successfully!');
+              this.addClassForm.reset()
+              this.addClass = false;
+            }
+          },
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error.message)
           }
-        },
-        error:(err:HttpErrorResponse)=>{
-          console.log(err.error.message)
-        }
-      })
+        })
+      }
     }
   }
 

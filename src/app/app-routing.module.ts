@@ -16,13 +16,15 @@ import { LevelComponent } from './Components/Admin/level/level.component';
 import { GradeComponent } from './Components/Admin/grade/grade.component';
 import { SubjectComponent } from './Components/Admin/subject/subject.component';
 import { LessonComponent } from './Components/Admin/lesson/lesson.component';
+import { adminAuthGuard } from './Guards/admin-auth.guard';
+import { teacherAuthGuard } from './Guards/teacher-auth.guard';
 
 const routes: Routes = [
 
-  {path:"",component:AdminComponent,children:[
+  {path:"",canActivate:[adminAuthGuard],component:AdminComponent,children:[
     {path:"",redirectTo:"addTeacher",pathMatch:'full'},
-    {path:"addTeacher",component:AddTeacherComponent,title:''},
-    {path:"addPackageForTeacher/:id",component:PackageForTeacherComponent,title:''},
+    {path:"addTeacher",component:AddTeacherComponent,title:'إضافه معلم'},
+    {path:"addPackageForTeacher/:id",component:PackageForTeacherComponent,title:'إضافه إشتراك للمعلم'},
     // {path:"addPackageForTeacher",component:PackageForTeacherComponent,title:''},
     {path:"academicTerm",component:AcademicTermComponent,title:''},
     {path:"level",component:LevelComponent,title:''},
@@ -30,13 +32,17 @@ const routes: Routes = [
     {path:"subject",component:SubjectComponent,title:''},
     {path:"lesson",component:LessonComponent,title:''},
     {path:"home",component:HomeComponent,title:''},
-  ]},
-  {path:"",component:TeacherComponent,children:[
-    {path:"",redirectTo:"classes",pathMatch:'full'},
     {path:"classes",component:ClassesComponent,title:'الفصول'},
     {path:"chooseLesson",component:ChooseLessonComponent,title:'إختيار درس'},
+    {path:"classStudent",component:ClassStudentComponent,title:'الفصول'},
+    {path:"classStudent/:id",component:ClassStudentComponent,title:'الفصول'}
+  ]},
+  {path:"",canActivate:[teacherAuthGuard],component:TeacherComponent,children:[
+    // {path:"",redirectTo:"classes",pathMatch:'full'},
+    // {path:"classes",component:ClassesComponent,title:'الفصول'},
+    // {path:"chooseLesson",component:ChooseLessonComponent,title:'إختيار درس'},
     // {path:"classStudent",component:ClassStudentComponent,title:'الفصول'},
-    {path:"classStudent/:id",component:ClassStudentComponent,title:'الفصول'},
+    // {path:"classStudent/:id",component:ClassStudentComponent,title:'الفصول'}
   ]},
   {path:"login",component:LoginComponent,title:'تسجيل دخول'},
   {path:"register",component:RegisterComponent,title:'إنشاء حساب'},

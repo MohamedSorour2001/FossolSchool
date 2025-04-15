@@ -37,14 +37,13 @@ export class AddTeacherComponent {
 
 
     Submit(){
-      console.log(this.registerForm.value)
       if(this.registerForm.valid){
         this._UserDataService.AddTeacher(this.registerForm.value).subscribe({
           next:(response)=>{
             console.log(response)
             const id=response.data;
             if(response.error==null){
-              console.log('Teacher Added Successfuly')
+              window.console.warn('Teacher Added Successfuly')
               this.Router.navigate(['addPackageForTeacher',id])
             }
           },

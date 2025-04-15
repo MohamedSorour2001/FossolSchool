@@ -58,6 +58,17 @@ export class GradeComponent {
           })
         }
 
+        deleteGrade(id:any){
+          this._AppDataService.DeleteGrade(id).subscribe({
+            next:(response)=>{
+              window.console.warn('Grade Deleted Successfully!');
+              this.GetGrades()
+            },error:(err:HttpErrorResponse)=>{
+              console.log(err)
+            }
+          })
+        }
+
 
         ngOnInit(): void {
           this.GetGrades()
@@ -72,7 +83,10 @@ export class GradeComponent {
               next:(response)=>{
                 console.log(response)
                 if(response.error==null){
-                  console.log('Grade Added Successfuly')
+                  window.console.warn('Grade Added Successfully!');
+                  this.ShowAddAcademinTerm=false;
+                  this.GetGrades()
+                  this.addClassForm.reset()
                 }
               },
               error:(err:HttpErrorResponse)=>{

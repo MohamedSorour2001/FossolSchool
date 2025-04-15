@@ -51,12 +51,23 @@ export class AcademicTermComponent {
       }
     })
   }
+  deleteAcademicTerm(id:any){
+    this._AppDataService.DeleteAcademicTerm(id).subscribe({
+      next:(response)=>{
+        window.console.warn('AcademicTerm Deleted Successfully!');
+        this.GetAcademicTerms()
+      },error:(err:HttpErrorResponse)=>{
+        console.log(err)
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.GetAcademicTerms()
   }
 
   Submit() {
+    if (this.addClassForm.valid) {
     const formattedStartDate = this.datePipe.transform(this.addClassForm.get('startDate')?.value, 'dd/MM/yyyy');
     const formattedEndDate = this.datePipe.transform(this.addClassForm.get('endDate')?.value, 'dd/MM/yyyy');
     const requestData = {
@@ -64,14 +75,13 @@ export class AcademicTermComponent {
       startDate: formattedStartDate,
       endDate: formattedEndDate
     };
-    console.log(requestData)
-    if (this.addClassForm.valid) {
       this._AppDataService.AddAcademicTerm(requestData).subscribe({
         next: (response) => {
-          console.log(response)
           if (response.error == null) {
-            console.log('AcademinTerm Added Successfuly')
+            window.console.warn('AcademicTerm Added Successfully!');
+            this.ShowAddAcademinTerm=false;
             this.GetAcademicTerms()
+            this.addClassForm.reset()
           }
         },
         error: (err: HttpErrorResponse) => {

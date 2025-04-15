@@ -93,7 +93,6 @@ export class PackageForTeacherComponent {
       this._AppDataService.GetSubjectByGradelId(gradeId).subscribe({
         next: (response) => {
           this.subjects = [...this.subjects, ...response.data];
-          console.log(this.subjects)
         },
         error: (err: HttpErrorResponse) => {
           console.log(err);
@@ -149,33 +148,33 @@ export class PackageForTeacherComponent {
       academicTermIds: this.selectedAcademicTermForForm
     };
     console.log(apiPayload)
-    // if (this.addClassForm.valid) {
+    if (apiPayload.teacherId && apiPayload.gradeIds && apiPayload.subjectIds && apiPayload.academicTermIds) {
       this._AppDataService.AddTeacherDetails(apiPayload).subscribe({
         next: (response) => {
           if (response.error == null) {
-            console.log('Teacher Details Added Successfuly')
+            window.console.warn('Teacher Details Added Successfully!');
             this.addClassForm.reset();
+            this.Router.navigate(['addTeacher'])
           }
         },
         error: (err: HttpErrorResponse) => {
           console.log(err.error.message)
         }
-      }
-    )
-    // }
+      })
+    }
   }
 
   get teacherId() {
-    return this.addClassForm.get('teacherId');
-  }
+  return this.addClassForm.get('teacherId');
+}
   get gradeIds() {
-    return this.addClassForm.get('gradeIds');
-  }
+  return this.addClassForm.get('gradeIds');
+}
   get subjectIds() {
-    return this.addClassForm.get('subjectIds');
-  }
+  return this.addClassForm.get('subjectIds');
+}
   get academicTermIds() {
-    return this.addClassForm.get('academicTermIds');
-  }
+  return this.addClassForm.get('academicTermIds');
+}
 
 }

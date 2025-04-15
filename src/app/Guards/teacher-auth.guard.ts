@@ -3,14 +3,14 @@ import { CanActivateFn, Router } from '@angular/router';
 import { UserDataService } from '../Services/user-data.service';
 
 export const teacherAuthGuard: CanActivateFn = (route, state) => {
-   // const router = inject(Router);
-  //const authService = inject(UserDataService); // Assuming AuthService is properly provided
+   const router = inject(Router);
+  const authService = inject(UserDataService); // Assuming AuthService is properly provided
 
-  // if (authService.isTeacher() && localStorage.getItem("token") != null) {
-  //   return true;
-  // } else {
-  //   router.navigate(['/login']);
-  //   return false;
-  // }
+  if (localStorage.getItem("role")=='Teacher' && localStorage.getItem("token") != null) {
+    return true;
+  } else {
+    router.navigate(['/login']);
+    return false;
+  }
   return true;
 };

@@ -10,7 +10,7 @@
         <form action="" [formGroup]="addClassForm" (ngSubmit)="Submit()">
           <div class="AdminFlow-info">
             <div class="form-group mb-3 text-md-right">
-              <label class="label mb-2" for="name"> إسم المرحله</label>
+              <label class="label mb-2" for="name"> إسم الفصل الدراسى</label>
               <input type="text" class="form-control text-md-right" name="name" id="name" formControlName="name"
                 required />
               <div class="errormsg" [hidden]="name?.valid ||name?.untouched">
@@ -96,10 +96,13 @@
   <!-- ---------End Edit----------- -->
   <div class="adminTitle">
     <h3>الفصول الدراسيه</h3>
-    <button (click)="Toggle()">إضافه مرحله</button>
+    <button (click)="Toggle()">إضافه فصل دراسى</button>
   </div>
   <div class="adminTable">
-    <table class="table table-striped text-center">
+    <div class="dataNotFound" *ngIf="AcademicTerms.length==0">
+      <p>لا توجد بيانات حتى الأن</p>
+    </div>
+    <table class="table table-striped text-center" *ngIf="AcademicTerms.length>0">
       <thead class="thead">
         <tr>
           <th>الرقم </th>
@@ -123,7 +126,7 @@
                 <i class="fa-solid fa-gear"></i>
               </p>
               <hr class="m-0">
-              <p class="text-danger">
+              <p class="text-danger" (click)="deleteAcademicTerm(academ.id)">
                 حذف ..
                 <i class="fa-regular fa-trash-can"></i>
               </p>
@@ -132,7 +135,7 @@
         </tr>
       </tbody>
     </table>
-    <nav aria-label="Page navigation example">
+    <!-- <nav aria-label="Page navigation example">
       <ul class="pagination">
         <li class="page-item">
           <a class="page-link" href="#" aria-label="Previous">
@@ -148,6 +151,6 @@
           </a>
         </li>
       </ul>
-    </nav>
+    </nav> -->
   </div>
 </div>

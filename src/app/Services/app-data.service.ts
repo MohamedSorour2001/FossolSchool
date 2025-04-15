@@ -198,6 +198,12 @@ export class AppDataService {
     });
     return this.HttpClient.post(this.back+'Lesson/get-lessons-by-subject/'+id, {},{headers});
   }
+  GetLessonResources(id:any):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'Lesson/lesson-get-resource/'+id, {},{headers});
+  }
 
   AddLesson(data:object):Observable<any>{
     const headers = new HttpHeaders({

@@ -118,7 +118,17 @@ export class LessonComponent implements OnInit {
         console.log(err);
       }
     })
+  }
 
+  deleteLesson(id: any) {
+    this._AppDataService.DeleteLesson(id).subscribe({
+      next: (response) => {
+        window.console.warn('Lesson Deleted Successfully!');
+        this.GetLessons()
+      }, error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -127,23 +137,25 @@ export class LessonComponent implements OnInit {
   }
 
   Submit() {
-    const apiPayload = {
-      title: this.name?.value,
-      subjectId: this.subjectId?.value
-    };
-    this._AppDataService.AddLesson(apiPayload).subscribe({
-      next: (response) => {
-        if (response.error == null) {
-          console.log('Lesson Added Successfuly')
-          this.GetLessons()
-          this.addClassForm.reset();
-          this.ShowAddAcademinTerm = false;
+    if (this.addClassForm.valid) {
+      const apiPayload = {
+        title: this.name?.value,
+        subjectId: this.subjectId?.value
+      };
+      this._AppDataService.AddLesson(apiPayload).subscribe({
+        next: (response) => {
+          if (response.error == null) {
+            window.console.warn('Lesson Added Successfully!');
+            this.ShowAddAcademinTerm = false;
+            this.GetLessons();
+            this.addClassForm.reset();
+          }
+        },
+        error: (err: HttpErrorResponse) => {
+          console.log(err.error.message)
         }
-      },
-      error: (err: HttpErrorResponse) => {
-        console.log(err.error.message)
       }
+      )
     }
-    )
   }
 }

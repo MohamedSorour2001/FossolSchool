@@ -85,6 +85,16 @@ export class SubjectComponent {
     })
   }
 
+  deleteSubject(id: any) {
+    this._AppDataService.DeleteSubject(id).subscribe({
+      next: (response) => {
+        window.console.warn('Subject Deleted Successfully!');
+        this.GetSubjects()
+      }, error: (err: HttpErrorResponse) => {
+        console.log(err)
+      }
+    })
+  }
 
   ngOnInit(): void {
     this.GetSubjects()
@@ -93,13 +103,15 @@ export class SubjectComponent {
 
 
   Submit() {
-    console.log(this.addClassForm.value)
     if (this.addClassForm.valid) {
       this._AppDataService.AddSubject(this.addClassForm.value).subscribe({
         next: (response) => {
           console.log(response)
           if (response.error == null) {
-            console.log('Grade Added Successfuly')
+            window.console.warn('Subject Added Successfully!');
+            this.ShowAddAcademinTerm = false;
+            this.GetSubjects()
+            this.addClassForm.reset()
           }
         },
         error: (err: HttpErrorResponse) => {
