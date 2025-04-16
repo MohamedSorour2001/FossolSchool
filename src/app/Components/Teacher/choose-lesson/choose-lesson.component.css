@@ -100,3 +100,14 @@ button.submit:hover{
   direction: rtl;
   margin-bottom: 10px;
 }
+
+.form-group.show{
+  width: 30%;
+  background-color: var(--grey-color);
+  border-radius: 12px;
+  box-shadow: 1px 1px 5px #161616;
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

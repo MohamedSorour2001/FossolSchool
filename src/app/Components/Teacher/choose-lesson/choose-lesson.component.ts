@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { distinctUntilChanged } from 'rxjs';
 import { AppDataService } from 'src/app/Services/app-data.service';
@@ -17,9 +17,10 @@ export class ChooseLessonComponent implements OnInit {
   grades: any[] = [];
   subjects: any[] = [];
   lessons: any[] = [];
-  lessonData:any;
-  lessonFiles:any;
-  showLessonData:boolean=false;
+  lessonFiles: any[] = [];
+  lessonData: any;
+  showLessonData: boolean = false;
+  ShowAddFileToLesson: boolean = false;
 
   // Arrays used to show a carousel “window” of 3 items.
   visibleLevels: any[] = [];
@@ -35,6 +36,7 @@ export class ChooseLessonComponent implements OnInit {
 
   // The form now includes separate selections for subject and lesson.
   addClassForm: FormGroup;
+  addFileForm: FormGroup;
 
   constructor(
     private fb: FormBuilder,
@@ -48,6 +50,9 @@ export class ChooseLessonComponent implements OnInit {
       gradeId: ['', [Validators.required]],
       subjectId: ['', [Validators.required]],
       lessonId: ['', [Validators.required]]
+    });
+    this.addFileForm = fb.group({
+      Files: fb.array([], Validators.required)
     });
 
     // When level changes, fetch the corresponding grades.
@@ -78,6 +83,11 @@ export class ChooseLessonComponent implements OnInit {
   get gradeId() { return this.addClassForm.get("gradeId"); }
   get subjectId() { return this.addClassForm.get("subjectId"); }
   get lessonId() { return this.addClassForm.get("lessonId"); }
+  get Files(): FormArray {
+    return this.addFileForm.get('Files') as FormArray;
+  }
+
+
 
   ngOnInit(): void {
     this.GetLevels();
@@ -330,34 +340,76 @@ export class ChooseLessonComponent implements OnInit {
     }
   }
 
-  Toggle(){
-    this.showLessonData=!this.showLessonData
+  Toggle() {
+    this.showLessonData = !this.showLessonData
+  }
+  AddFileToggle() {
+    this.showLessonData = !this.showLessonData
+    this.ShowAddFileToLesson = !this.ShowAddFileToLesson
+
   }
 
   GoTOLessonData(): void {
-    if(this.lessonId){
+    if (this.lessonId) {
       this._AppDataService.GetLessonById(this.lessonId.value).subscribe({
         next: (response) => {
           this.lessonData = response.data;
-          this.showLessonData=true;
+          this.showLessonData = true;
           console.log(this.lessonData)
         },
         error: (err: HttpErrorResponse) => {
           console.error(err);
-          this.showLessonData=false;
+          this.showLessonData = false;
         }
       });
       this._AppDataService.GetLessonResources(this.lessonId.value).subscribe({
         next: (response) => {
           this.lessonFiles = response.data;
-          this.showLessonData=true;
-          console.log(this.lessonData)
+          this.showLessonData = true;
+          console.log(this.lessonFiles)
         },
         error: (err: HttpErrorResponse) => {
           console.error(err);
-          this.showLessonData=false;
+          this.showLessonData = false;
         }
       });
+    }
+  }
+
+  onFileSelected(event: any): void {
+    const selectedFiles = event.target.files;
+    if (selectedFiles) {
+      for (let i = 0; i < selectedFiles.length; i++) {
+        this.Files.push(this.fb.control(selectedFiles[i]));
+      }
+    }
+  }
+
+
+  AddFile(): void {
+    if (this.Files.length > 0) {
+      const lastFile = this.Files.at(this.Files.length - 1).value;
+      const apiPayload = {
+        Files: this.Files.value,
+        LessonId: this.lessonId?.value
+      };
+      console.log(apiPayload);
+      if (apiPayload != null) {
+        this._AppDataService.UploadLessonResource(apiPayload).subscribe({
+          next: (response) => {
+            if (response.error == null) {
+              window.console.warn('File Added Successfully!');
+              this.addFileForm.reset()
+              this.ShowAddFileToLesson = false;
+            }
+          },
+          error: (err: HttpErrorResponse) => {
+            console.log(err.error.message)
+          }
+        })
+      }
+    } else {
+      console.log("No files have been added yet!");
     }
   }
 

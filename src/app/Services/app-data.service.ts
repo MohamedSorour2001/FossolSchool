@@ -61,6 +61,13 @@ export class AppDataService {
     return this.HttpClient.post(this.back + 'AcademicTerm/delete/' + id, {}, { headers });
   }
 
+  EditAcademicTerm(id:any,data:object):Observable<any>{
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.HttpClient.post(this.back+'AcademicTerm/update/'+id,data,{headers});
+  }
+
   AddAcademicTerm(data:object):Observable<any>{
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${localStorage.getItem('token')}`
@@ -74,8 +81,6 @@ export class AppDataService {
     });
     return this.HttpClient.post(this.back+'AcademicTerm/get-by-id/'+id, {},{headers});
   }
-
-
 
   // --------------- Level API's ---------------
   GetAllLevels(): Observable<any> {

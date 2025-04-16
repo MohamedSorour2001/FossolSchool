@@ -1,19 +1,67 @@
 <div class="manooFlow" *ngIf="showLessonData">
   <div class="manooFlow-content">
     <img src="../../../../assets/images/close.png" alt="close" class="manooFlow-exit" (click)="Toggle()">
-    <h2 class="manooFlow-h2" *ngIf="!lessonData">محمد سرور</h2>
+    <h2 class="manooFlow-h2" *ngIf="!lessonData">----------</h2>
     <h2 class="manooFlow-h2" *ngIf="lessonData">{{lessonData.title}}</h2>
     <div>
+
+
+
+
       <form action="" [formGroup]="addClassForm" (ngSubmit)="Submit()">
         <div class="formButtoms d-flex align-items-center justify-content-between">
-          <button type="submit" class="btn btn-primary">
+          <button type="submit" class="btn btn-primary" (click)="AddFileToggle()">
             تحميل
             <i class="fa-solid fa-download"></i>
           </button>
           <button type="submit" class="btn btn-primary">حفظ</button>
         </div>
-        <div class="manooFlow-info">
+
+
+
+        <div class="manooFlow-info d-flex align-items-center justify-content-between flex-wrap">
+          <div class="form-group show mb-3 text-md-right"  *ngFor="let file of lessonFiles">
+                  <!-- For images -->
+                  <div *ngIf="file.fileType === '.jpg' || file.fileType === '.png' || file.fileType === '.jpeg'">
+                    <img [src]="file.filePath" alt="{{ file.fileName }}" style="display: inline-block;
+max-width: 200px; height: auto; border: 1px solid #ddd; margin: 10px;" />
+                  </div>
+
+                  <!-- For videos -->
+                  <div *ngIf="file.fileType === '.mp4' || file.fileType === '.mov' || file.fileType === '.avi'">
+                    <strong>Video Preview:</strong>
+                    <video [src]="file.filePath" controls style="max-width: 300px; height: auto;"></video>
+                  </div>
+
+                  <!-- For other files -->
+                  <div *ngIf="file.fileType !== '.jpg' && file.fileType !== '.png' && file.fileType !== '.jpeg' && file.fileType !== '.mp4' && file.fileType !== '.mov' && file.fileType !== '.avi'">
+                    <strong>Download File:</strong>
+                    <a [href]="file.filePath" download>{{ file.fileName }}</a>
+                  </div>
+          </div>
+        </div>
+
+
+
+        <!-- <div class="manooFlow-info d-flex align-items-center justify-content-between flex-wrap">
           <div class="form-group mb-3 text-md-right">
+            <h5>مانوو</h5>
+          </div>
+          <div class="form-group mb-3 text-md-right">
+            <h3>مانوو</h3>
+            <label for="levelId" class="form-label"> إختر المرحله</label>
+            <select class="form-select" name="levelId" formControlName="levelId" aria-label="Default select example">
+              <option selected disabled>إختر المرحله</option>
+              <option value={{level.id}} *ngFor="let level of levels">{{level.name}}</option>
+            </select>
+            <div class="errormsg" [hidden]="levelId?.valid ||levelId?.untouched">
+              <small class="text-danger text-end" *ngIf="levelId?.errors?.['required']">
+                المرحله مطلوبه
+              </small>
+            </div>
+          </div>
+          <div class="form-group mb-3 text-md-right">
+            <h5>مانوو</h5>
             <label for="levelId" class="form-label"> إختر المرحله</label>
             <select class="form-select" name="levelId" formControlName="levelId" aria-label="Default select example">
               <option selected disabled>إختر المرحله</option>
@@ -46,11 +94,49 @@
             </small>
           </div>
         </div>
-      </div>
+      </div> -->
       </form>
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+<div class="manooFlow" *ngIf="ShowAddFileToLesson">
+  <div class="manooFlow-content">
+    <img src="../../../../assets/images/close.png" alt="close" class="manooFlow-exit" (click)="AddFileToggle()">
+    <h2 class="manooFlow-h2">إضافه ملف</h2>
+    <div>
+      <form action="" [formGroup]="addClassForm" (ngSubmit)="AddFile()">
+        <div class="manooFlow-info">
+          <div class="form-group mb-3 text-md-right">
+            <label class="label mb-2" for="Files"> إختر ملف</label>
+            <input type="file" (change)="onFileSelected($event)" multiple class="form-control text-md-right" name="Files" id="Files" formControlName="Files" required />
+            <div class="errormsg" [hidden]="Files?.valid ||Files?.untouched">
+              <small class="text-danger text-end" *ngIf="Files?.errors?.['required']">
+                الملف مطلوب
+              </small>
+            </div>
+          </div>
+      </div>
+        <button type="submit" class="btn btn-primary mt-3">إضافه</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
 
 
 
